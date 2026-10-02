@@ -41,3 +41,9 @@ class Document:
     path: str
     page_count: int
     pages: list[PageContent]
+
+
+@dataclass(frozen=True)
+class Chunk:
+    page: int
+    content: str

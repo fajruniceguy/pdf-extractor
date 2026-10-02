@@ -8,15 +8,22 @@ Every returned value must be traceable to its source page. If the answer isn't s
 
 ## What's implemented
 
-- **PDF extraction** (`extractor/`): per-page text and table extraction via `pdfplumber`, with every text block and table tagged with its page number. No OCR, no LLM calls — this layer is purely deterministic. Run it with `python cli.py path/to/file.pdf` for a page-by-page summary.
+- **PDF extraction** (`extractor/extract.py`): per-page text and table extraction via `pdfplumber`, with every text block and table tagged with its page number. No OCR, no LLM calls — this layer is purely deterministic.
+- **Chunking** (`extractor/chunk.py`): splits each page's text into ~800 char chunks with 150 char overlap. Chunks never span pages, so a chunk's page number is always exact, never a guess about which page it "mostly" belongs to.
 - **Database schema** (`migrations/001_initial_schema.sql`): PostgreSQL + pgvector schema for documents and chunks, with an HNSW index for cosine similarity search. Brought up via `docker compose up -d`.
 
-## What's planned
+Run `python cli.py path/to/file.pdf` to see extraction + chunking together, page by page.
 
-- Chunking (~800 chars, 150 overlap, page number preserved) and embedding of extracted text
-- Vector retrieval (top-k similarity search over stored chunks)
-- Answer generation layer with mandatory page citations and a `not_stated` / `low_confidence` status
-- Eval suite: 30-50 labeled question/answer/page triples, including questions with no answer in the document, reporting answer accuracy, citation page accuracy, and correct `not_stated` rate
+## RAG implementation plan
+
+Nothing below this line is built yet — the schema and prompting rules are designed for it, but there's no embedding, retrieval, or generation code in the repo. This is the order it'll be built in:
+
+1. **Embed chunks** — `text-embedding-3-small` (1536 dims, matches `chunks.embedding`). Check for existing chunks before embedding so re-running ingestion never re-embeds for free; embeddings are a one-time cost per document.
+2. **Store** — insert each chunk's page number, content, and embedding into `chunks`, one row per chunk, one `documents` row per source PDF.
+3. **Retrieve** — embed the incoming question, then cosine-similarity search (`ORDER BY embedding <=> query LIMIT 5`) scoped to a `document_id`. This is already written as SQL in `Claude.md`; it just needs to be called from code.
+4. **Generate** — Claude Haiku 4.5 receives only the retrieved chunks as context (no general knowledge) and returns a `not_stated` status when the context doesn't contain the answer. Response is validated against a `Answer`/`Citation` Pydantic model — every answer carries at least one page citation.
+5. **Confidence** — derived, not self-reported: retrieval similarity score + a model-returned boolean (`explicitly_stated` vs. inferred). `needs_review` fires when similarity is below threshold *or* the answer wasn't explicitly stated. The model is never asked to output a confidence number directly — LLMs are poorly calibrated at that.
+6. **Eval suite** — 30-50 labeled question/answer/page triples, including questions with no answer in the document. Reports three metrics: answer accuracy, citation page accuracy, and correct `not_stated` rate on the absent-answer questions. Re-run after any change to chunking, retrieval, or prompting.
 
 ## Running it
 

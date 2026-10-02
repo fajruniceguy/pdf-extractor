@@ -11,20 +11,24 @@ import argparse
 import sys
 from pathlib import Path
 
-from extractor import Document, extract_pdf
+from extractor import Document, chunk_document, extract_pdf
 
 
 def summarize(document: Document) -> str:
+    chunks = chunk_document(document)
     lines = [
         f"Document: {document.doc_id} ({document.page_count} pages)",
         f"Path: {document.path}",
+        f"Chunks: {len(chunks)} (~800 chars, 150 overlap, page-bounded)",
         "",
     ]
     for page in document.pages:
         char_count = sum(len(block.text) for block in page.text_blocks)
+        page_chunks = [c for c in chunks if c.page == page.page]
         lines.append(
             f"Page {page.page}: {len(page.text_blocks)} text blocks, "
-            f"{char_count} characters, {len(page.tables)} tables"
+            f"{char_count} characters, {len(page.tables)} tables, "
+            f"{len(page_chunks)} chunks"
         )
         for i, table in enumerate(page.tables, start=1):
             rows = len(table.rows)
