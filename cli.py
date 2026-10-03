@@ -1,8 +1,9 @@
 """Page-by-page summary of what the extraction layer found in a PDF.
 
-    python cli.py path/to/file.pdf
+    python cli.py path/to/file.pdf          # extraction report
+    python cli.py ingest path/to/file.pdf   # embed and store in Postgres
 
-No LLM calls here — just a deterministic report of text blocks and
+No LLM calls in the report — just a deterministic report of text blocks and
 tables per page, for sanity-checking the extraction layer itself.
 """
 from __future__ import annotations
@@ -37,7 +38,30 @@ def summarize(document: Document) -> str:
     return "\n".join(lines)
 
 
+def _ingest_main(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(prog="cli.py ingest", description="Embed a PDF and store it in Postgres.")
+    parser.add_argument("pdf_path", type=Path, help="path to a native-text PDF")
+    args = parser.parse_args(argv)
+
+    if not args.pdf_path.exists():
+        print(f"error: file not found: {args.pdf_path}", file=sys.stderr)
+        return 1
+
+    from extractor.ingest import ingest
+
+    try:
+        ingest(args.pdf_path)
+    except RuntimeError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] == "ingest":
+        return _ingest_main(argv[1:])
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pdf_path", type=Path, help="path to a native-text PDF")
     args = parser.parse_args(argv)

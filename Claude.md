@@ -2,6 +2,8 @@
 
 Project context for Claude Code. Read this before making changes.
 
+Current milestones and scope: docs/MILESTONES.md. Work only on the milestone I name.
+
 ## What this is
 
 A document extraction and question-answering system for dense PDFs, built for workflows where a wrong answer is worse than no answer.
