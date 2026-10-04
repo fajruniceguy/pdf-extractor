@@ -3,6 +3,7 @@
     python cli.py path/to/file.pdf          # extraction report
     python cli.py ingest path/to/file.pdf   # embed and store in Postgres
     python cli.py ask "question" [--doc ID] # top 5 chunks with file, page and score
+    python cli.py answer "question" [--doc ID]  # cited answer or "not stated"
     python cli.py docs                      # list ingested documents and their ids
 
 No LLM calls in the report — just a deterministic report of text blocks and
@@ -81,6 +82,47 @@ def _ask_main(argv: list[str]) -> int:
     return 0
 
 
+def _answer_main(argv: list[str]) -> int:
+    parser = argparse.ArgumentParser(prog="cli.py answer", description="Answer a question from the document, with page citations.")
+    parser.add_argument("question", help="the question to answer")
+    parser.add_argument("--doc", type=int, default=None, help="restrict to one document id (see: cli.py docs)")
+    args = parser.parse_args(argv)
+
+    from extractor.answer import MODEL, answer
+
+    sys.stdout.reconfigure(errors="replace")
+    try:
+        result = answer(args.question, document_id=args.doc)
+    except RuntimeError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+
+    print(f"Question: {result.question}")
+    print(f"Answer:   {result.answer}")
+    print(f"Stated:   {result.stated}")
+    if result.citations:
+        print("Citations: " + "; ".join(f"{name}, page {page}" for name, page in result.citations))
+    else:
+        print("Citations: none")
+    retrieved = ", ".join(f"p{r.page_number} ({r.similarity:.3f})" for r in result.retrieved)
+    print(f"Retrieved (page, score): {retrieved}")
+    print(f"Raw model output: {result.raw_output!r}")
+    print(f"Model: {MODEL}  stop_reason: {result.stop_reason}")
+    print(
+        f"Tokens: {result.input_tokens} in / {result.output_tokens} out  "
+        f"est. cost: ${result.cost_usd:.6f}"
+    )
+    if result.stop_reason == "max_tokens":
+        print("WARNING: answer was cut off at max_tokens")
+    if result.note:
+        print(f"WARNING: model added text after 'not stated' (not part of the answer): {result.note!r}")
+    if result.stated and not result.citations:
+        print("WARNING: answer has no citation")
+    if result.unsupported_citations:
+        print(f"WARNING: cited (filename, page) not in retrieved context: {result.unsupported_citations}")
+    return 0
+
+
 def _docs_main() -> int:
     from extractor.retrieve import list_documents
 
@@ -107,6 +149,8 @@ def main(argv: list[str] | None = None) -> int:
         return _ingest_main(argv[1:])
     if argv and argv[0] == "ask":
         return _ask_main(argv[1:])
+    if argv and argv[0] == "answer":
+        return _answer_main(argv[1:])
     if argv and argv[0] == "docs":
         return _docs_main()
 
