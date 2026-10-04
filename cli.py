@@ -1,7 +1,8 @@
 """Page-by-page summary of what the extraction layer found in a PDF.
 
     python cli.py path/to/file.pdf          # extraction report
-    python cli.py ingest path/to/file.pdf   # embed and store in Postgres
+    python cli.py path/to/file.pdf --column-aware  # same report, experimental two-column reading order
+    python cli.py ingest path/to/file.pdf [--column-aware]  # embed and store in Postgres
     python cli.py ask "question" [--doc ID] # top 5 chunks with file, page and score
     python cli.py answer "question" [--doc ID]  # cited answer or "not stated"
     python cli.py docs                      # list ingested documents and their ids
@@ -44,6 +45,7 @@ def summarize(document: Document) -> str:
 def _ingest_main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(prog="cli.py ingest", description="Embed a PDF and store it in Postgres.")
     parser.add_argument("pdf_path", type=Path, help="path to a native-text PDF")
+    parser.add_argument("--column-aware", action="store_true", help="experimental: read two-column pages left column then right column")
     args = parser.parse_args(argv)
 
     if not args.pdf_path.exists():
@@ -53,7 +55,7 @@ def _ingest_main(argv: list[str]) -> int:
     from extractor.ingest import ingest
 
     try:
-        ingest(args.pdf_path)
+        ingest(args.pdf_path, column_aware=args.column_aware)
     except RuntimeError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
@@ -158,13 +160,14 @@ def main(argv: list[str] | None = None) -> int:
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pdf_path", type=Path, help="path to a native-text PDF")
+    parser.add_argument("--column-aware", action="store_true", help="experimental: read two-column pages left column then right column")
     args = parser.parse_args(argv)
 
     if not args.pdf_path.exists():
         print(f"error: file not found: {args.pdf_path}", file=sys.stderr)
         return 1
 
-    document = extract_pdf(args.pdf_path)
+    document = extract_pdf(args.pdf_path, column_aware=args.column_aware)
     print(summarize(document))
     return 0
 

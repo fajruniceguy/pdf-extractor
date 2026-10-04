@@ -210,3 +210,34 @@ Similarity = 1 - cosine distance. `top` = rank 1, `5th` = rank 5. Live re-runs u
 - Automated tests (S3); none exist in the repo.
 - Two-signal confidence and needs_review (S2); not implemented.
 - A systematic search for mirrored or interleaved text in documents 1 and 3.
+
+## 9. Supplementary diagnostic: PTBA interim report (not ingested)
+
+Run in session with the project's own `_extract_text_blocks`, `_extract_tables` and `chunk_document`, sliced to selected pages in a throwaway script. No ingest, no embedding, no database write. Figures were recomputed from the PDF when this section was written.
+
+- Document: `ptba-quarterly-report.pdf`; the page text identifies it as PT Bukit Asam (Persero) Tbk interim consolidated financial statements for the three months ended March 31, 2026
+- Pages: 152; pages with zero extracted text lines: [2]
+- Not in the database; no rows exist for it
+- Pages examined in detail: 63, 73 (the notes: page 63 is Note 3, judgments and estimates; page 73 is Note 9, investments, with a summarised profit-or-loss block)
+- Extracted lines and chunks per page
+  - Page 63: 67 text lines, 5409 characters, 9 chunks (first chunk 800 characters; the first 11 lines, 664 characters, are a header block repeated on notes pages)
+  - Page 73: 63 text lines, 4133 characters, 7 chunks (first chunk 800 characters; the first 11 lines, 664 characters, are a header block repeated on notes pages)
+- Interleaving ratios (a line counts as `both` when it contains at least one Indonesian and at least one English function word)
+  - Indonesian function words used: adalah, akan, atas, dalam, dan, dari, dengan, ini, kepada, oleh, pada, telah, tidak, untuk, yang
+  - English function words used: and, are, as, be, by, for, from, have, in, is, of, on, that, the, to, which, will, with
+  - Page 63: 42 of 67 lines are `both`; Indonesian only 7; English only 9; neither 9
+  - Page 73: 32 of 63 lines are `both`; Indonesian only 7; English only 8; neither 16
+- Structure of a line: each extracted line holds the left-column (Indonesian) fragment followed by the right-column (English) fragment, e.g. `Pendapatan 567.618 554.473 Revenue` and `Penghasilan komprehensif lain 368.751 - Other comprehensive income`
+- Run-together words: tokens of 25 or more consecutive letters, page 63: 0; page 73: 0; `(cid:` occurrences, page 63: 0; page 73: 0
+- One merged word seen in the raw lines of page 9 (not part of the chunked pages): `Catatan atas laporan keuangan konsolidasian interiterlampir merupakan `
+- Tables detected by the extractor: 0 across 15 candidate pages (pages 9, 12, 18, 19, 25, 33, 39, 55, 63, 73, 99, 106, 125, 139, 142); per page: 9: 0, 12: 0, 18: 0, 19: 0, 25: 0, 33: 0, 39: 0, 55: 0, 63: 0, 73: 0, 99: 0, 106: 0, 125: 0, 139: 0, 142: 0
+- State of table-like content in the chunk text
+  - Page 73: the summarised profit-or-loss block appears as plain text lines, one row per line, laid out as Indonesian label, current-period value, prior-period value, English label
+  - Page 73: the row `Beban umum dan administrasi (21.708) (26.037) General and adm` ends chunk 2 of 7 and is completed in chunk 3 of 7; the label `Jumlah laba komprehensif ... periode berjalan 714.992 183.979 ... for the period` wraps over two lines with the values on the second
+  - Page 9 (statement of changes in equity, raw lines only): `Saldo pada tanggal 1 Januari 2025 1.152.066 642.832 (12.521) 3.701 1.120.325 13.730.400 5.868.485 22.505.288 138.524 22.643.812 Balance as of January 1, 2025`; the multi-line column headers above it are on separate lines, mixed across both languages
+- Number formatting (counts over the extracted lines of the listed pages)
+  - Dot-grouped thousands (e.g. 567.618): page 73 21, page 9 66; comma-grouped thousands: page 73 0, page 9 0
+  - Parenthesised negatives (e.g. (516.544)): page 73 10, page 9 12; standalone `-` tokens: page 73 1, page 9 72
+- Page offset between the PDF page index and the printed page number (last extracted line of the page)
+  - PDF page 9 prints 6; PDF page 63 prints 60; PDF page 73 prints 70
+- Full chunk dump of pages 63 and 73 was produced in session and saved to the session scratchpad as `ptba_chunks_63_73.txt`; it is not part of the repo

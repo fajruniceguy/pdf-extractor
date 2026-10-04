@@ -33,7 +33,7 @@ def _existing_id(conn: psycopg.Connection, file_hash: str) -> int | None:
     return row[0] if row else None
 
 
-def ingest(pdf_path: str | Path) -> int:
+def ingest(pdf_path: str | Path, *, column_aware: bool = False) -> int:
     """Ingest a PDF and return its documents.id (existing id if already ingested)."""
     path = Path(pdf_path)
     file_hash = _sha256(path)
@@ -44,7 +44,7 @@ def ingest(pdf_path: str | Path) -> int:
             print(f"already ingested: {path.name} (document id {existing})")
             return existing
 
-        document = extract_pdf(path)
+        document = extract_pdf(path, column_aware=column_aware)
         chunks = chunk_document(document)
 
         if not chunks:
@@ -83,6 +83,8 @@ def ingest(pdf_path: str | Path) -> int:
             return existing
 
     print(f"Ingested {path.name} as document id {doc_id}")
+    if column_aware:
+        print("  extraction: column-aware (experimental)")
     print(f"  pages: {document.page_count}")
     print(f"  chunks inserted: {len(chunks)}")
     print(f"  pages with zero chunks: {empty_pages if empty_pages else 'none'}")
