@@ -1,0 +1,706 @@
+{
+  "run_at": "2026-10-04T03:16:57.463785+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "document_id": 3,
+  "summary": {
+    "answerable": 10,
+    "correct": 10,
+    "unsure": 0,
+    "wrong_or_refused": 0,
+    "citation_ok": 10,
+    "absent": 5,
+    "correctly_refused": 5,
+    "input_tokens": 17791,
+    "output_tokens": 895,
+    "cost_usd": 0.022266
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "answerable",
+      "question": "What is the initial supply of POL?",
+      "expected_answer": "10 billion tokens",
+      "expected_pages": [
+        9
+      ],
+      "grade": "PASS",
+      "detail": "1/1 expected facts found",
+      "stated": true,
+      "answer": "The initial supply of POL is 10 billion tokens. [POL Whitepaper v0.2.pdf, page 9]",
+      "raw_output": "The initial supply of POL is 10 billion tokens. [POL Whitepaper v0.2.pdf, page 9]",
+      "note": null,
+      "cited_pages": [
+        9
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 9,
+          "score": 0.662
+        },
+        {
+          "page": 10,
+          "score": 0.6558
+        },
+        {
+          "page": 9,
+          "score": 0.6125
+        },
+        {
+          "page": 11,
+          "score": 0.5842
+        },
+        {
+          "page": 18,
+          "score": 0.576
+        }
+      ],
+      "top_score": 0.662,
+      "input_tokens": 1161,
+      "output_tokens": 34,
+      "cost_usd": 0.001331,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 2,
+      "category": "answerable",
+      "question": "What are the two purposes POL is emitted for, and at what rate each?",
+      "expected_answer": "Validator rewards 1%, Community Treasury 1%",
+      "expected_pages": [
+        10
+      ],
+      "grade": "PASS",
+      "detail": "3/3 expected facts found",
+      "stated": true,
+      "answer": "According to the context, POL is emitted for two purposes [POL Whitepaper v0.2.pdf, page 10]:\n\n1. **Validator rewards**: A yearly emission rate of 1% of the POL supply. This rate cannot be changed for the initial 10 years, after which the community can decide to decrease it via the governance framework, but it can never be increased beyond 1% [POL Whitepaper v0.2.pdf, page 10].\n\n2. **Ecosystem support**: A yearly emission rate of 1% of the POL supply for the Community Treasury, a community-governed ecosystem fund. Like validator rewards, this emission rate can be decreased after 10 years via governance, but can never be increased beyond 1% [POL Whitepaper v0.2.pdf, page 10].",
+      "raw_output": "According to the context, POL is emitted for two purposes [POL Whitepaper v0.2.pdf, page 10]:\n\n1. **Validator rewards**: A yearly emission rate of 1% of the POL supply. This rate cannot be changed for the initial 10 years, after which the community can decide to decrease it via the governance framework, but it can never be increased beyond 1% [POL Whitepaper v0.2.pdf, page 10].\n\n2. **Ecosystem support**: A yearly emission rate of 1% of the POL supply for the Community Treasury, a community-governed ecosystem fund. Like validator rewards, this emission rate can be decreased after 10 years via governance, but can never be increased beyond 1% [POL Whitepaper v0.2.pdf, page 10].",
+      "note": null,
+      "cited_pages": [
+        10
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 10,
+          "score": 0.6082
+        },
+        {
+          "page": 10,
+          "score": 0.5882
+        },
+        {
+          "page": 10,
+          "score": 0.5343
+        },
+        {
+          "page": 11,
+          "score": 0.5167
+        },
+        {
+          "page": 12,
+          "score": 0.4999
+        }
+      ],
+      "top_score": 0.608,
+      "input_tokens": 1015,
+      "output_tokens": 189,
+      "cost_usd": 0.00196,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 3,
+      "category": "answerable",
+      "question": "For how many years can the POL emission rate not be changed?",
+      "expected_answer": "10 years",
+      "expected_pages": [
+        10
+      ],
+      "grade": "PASS",
+      "detail": "2/2 expected facts found",
+      "stated": true,
+      "answer": "For the initial 10 years, the POL emission rate cannot be changed [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "raw_output": "For the initial 10 years, the POL emission rate cannot be changed [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "note": null,
+      "cited_pages": [
+        10
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 10,
+          "score": 0.5726
+        },
+        {
+          "page": 10,
+          "score": 0.544
+        },
+        {
+          "page": 11,
+          "score": 0.5362
+        },
+        {
+          "page": 10,
+          "score": 0.5332
+        },
+        {
+          "page": 12,
+          "score": 0.459
+        }
+      ],
+      "top_score": 0.573,
+      "input_tokens": 1011,
+      "output_tokens": 70,
+      "cost_usd": 0.001361,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 4,
+      "category": "answerable",
+      "question": "In absolute terms, how much POL per year goes to the Community Treasury?",
+      "expected_answer": "Approximately 100 million POL",
+      "expected_pages": [
+        17
+      ],
+      "grade": "PASS",
+      "detail": "1/1 expected facts found",
+      "stated": true,
+      "answer": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This represents a 1% annual emission rate of the POL supply dedicated to this purpose.",
+      "raw_output": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This represents a 1% annual emission rate of the POL supply dedicated to this purpose.",
+      "note": null,
+      "cited_pages": [
+        17
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 17,
+          "score": 0.5906
+        },
+        {
+          "page": 24,
+          "score": 0.5787
+        },
+        {
+          "page": 17,
+          "score": 0.5627
+        },
+        {
+          "page": 21,
+          "score": 0.5397
+        },
+        {
+          "page": 10,
+          "score": 0.5196
+        }
+      ],
+      "top_score": 0.591,
+      "input_tokens": 1127,
+      "output_tokens": 59,
+      "cost_usd": 0.001422,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 5,
+      "category": "answerable",
+      "question": "What is the minimal satisfactory POL staking ratio?",
+      "expected_answer": "30-40%",
+      "expected_pages": [
+        19
+      ],
+      "grade": "PASS",
+      "detail": "2/2 expected facts found",
+      "stated": true,
+      "answer": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19]. This is roughly equivalent to the current staking ratio on the Polygon PoS chain [POL Whitepaper v0.2.pdf, page 19].",
+      "raw_output": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19]. This is roughly equivalent to the current staking ratio on the Polygon PoS chain [POL Whitepaper v0.2.pdf, page 19].",
+      "note": null,
+      "cited_pages": [
+        19
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 19,
+          "score": 0.6643
+        },
+        {
+          "page": 23,
+          "score": 0.564
+        },
+        {
+          "page": 8,
+          "score": 0.5519
+        },
+        {
+          "page": 10,
+          "score": 0.549
+        },
+        {
+          "page": 14,
+          "score": 0.5447
+        }
+      ],
+      "top_score": 0.664,
+      "input_tokens": 1161,
+      "output_tokens": 72,
+      "cost_usd": 0.001521,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 6,
+      "category": "answerable",
+      "question": "What is the minimal satisfactory Return on Work?",
+      "expected_answer": "4-5%",
+      "expected_pages": [
+        19
+      ],
+      "grade": "PASS",
+      "detail": "2/2 expected facts found",
+      "stated": true,
+      "answer": "The minimal satisfactory Return on Work (ROW) is 4-5% [POL Whitepaper v0.2.pdf, page 19].",
+      "raw_output": "The minimal satisfactory Return on Work (ROW) is 4-5% [POL Whitepaper v0.2.pdf, page 19].",
+      "note": null,
+      "cited_pages": [
+        19
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 19,
+          "score": 0.4094
+        },
+        {
+          "page": 23,
+          "score": 0.3984
+        },
+        {
+          "page": 19,
+          "score": 0.3837
+        },
+        {
+          "page": 22,
+          "score": 0.3531
+        },
+        {
+          "page": 24,
+          "score": 0.3308
+        }
+      ],
+      "top_score": 0.409,
+      "input_tokens": 1237,
+      "output_tokens": 38,
+      "cost_usd": 0.001427,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 7,
+      "category": "answerable",
+      "question": "What average POL price is used as a model input?",
+      "expected_answer": "$5",
+      "expected_pages": [
+        21
+      ],
+      "grade": "PASS",
+      "detail": "1/1 expected facts found",
+      "stated": true,
+      "answer": "According to the context, the average POL price used as a model input is $5 during the 10-year period [POL Whitepaper v0.2.pdf, page 21].",
+      "raw_output": "According to the context, the average POL price used as a model input is $5 during the 10-year period [POL Whitepaper v0.2.pdf, page 21].",
+      "note": null,
+      "cited_pages": [
+        21
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 21,
+          "score": 0.6018
+        },
+        {
+          "page": 21,
+          "score": 0.5725
+        },
+        {
+          "page": 21,
+          "score": 0.5301
+        },
+        {
+          "page": 23,
+          "score": 0.5227
+        },
+        {
+          "page": 19,
+          "score": 0.5099
+        }
+      ],
+      "top_score": 0.602,
+      "input_tokens": 1305,
+      "output_tokens": 47,
+      "cost_usd": 0.00154,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 8,
+      "category": "answerable",
+      "question": "What is the average yearly running cost per validator?",
+      "expected_answer": "$6,000",
+      "expected_pages": [
+        21
+      ],
+      "grade": "PASS",
+      "detail": "1/1 expected facts found",
+      "stated": true,
+      "answer": "The average yearly running cost per validator is $6,000/year [POL Whitepaper v0.2.pdf, page 21].",
+      "raw_output": "The average yearly running cost per validator is $6,000/year [POL Whitepaper v0.2.pdf, page 21].",
+      "note": null,
+      "cited_pages": [
+        21
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 22,
+          "score": 0.598
+        },
+        {
+          "page": 21,
+          "score": 0.5229
+        },
+        {
+          "page": 22,
+          "score": 0.5123
+        },
+        {
+          "page": 23,
+          "score": 0.4898
+        },
+        {
+          "page": 21,
+          "score": 0.4446
+        }
+      ],
+      "top_score": 0.598,
+      "input_tokens": 1650,
+      "output_tokens": 35,
+      "cost_usd": 0.001825,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 9,
+      "category": "answerable",
+      "question": "What are the four phases of the validator lifecycle?",
+      "expected_answer": "Activation, Subscription, Validation, Retirement",
+      "expected_pages": [
+        15,
+        16
+      ],
+      "grade": "PASS",
+      "detail": "4/4 expected facts found",
+      "stated": true,
+      "answer": "The four phases of the validator lifecycle are [POL Whitepaper v0.2.pdf, page 15]:\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once the retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract [POL Whitepaper v0.2.pdf, page 16].",
+      "raw_output": "The four phases of the validator lifecycle are [POL Whitepaper v0.2.pdf, page 15]:\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once the retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract [POL Whitepaper v0.2.pdf, page 16].",
+      "note": null,
+      "cited_pages": [
+        15,
+        16
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 15,
+          "score": 0.674
+        },
+        {
+          "page": 16,
+          "score": 0.5613
+        },
+        {
+          "page": 15,
+          "score": 0.4952
+        },
+        {
+          "page": 16,
+          "score": 0.4728
+        },
+        {
+          "page": 9,
+          "score": 0.4695
+        }
+      ],
+      "top_score": 0.674,
+      "input_tokens": 1090,
+      "output_tokens": 227,
+      "cost_usd": 0.002225,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 10,
+      "category": "answerable",
+      "question": "Why is AAVE relevant to POL's design?",
+      "expected_answer": "LEND to AAVE migration precedent and its governance model",
+      "expected_pages": [
+        7
+      ],
+      "grade": "PASS",
+      "detail": "3/3 expected facts found",
+      "stated": true,
+      "answer": "According to the context, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
+      "raw_output": "According to the context, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
+      "note": null,
+      "cited_pages": [
+        7
+      ],
+      "citation_hit": true,
+      "expected_page_retrieved": true,
+      "retrieved": [
+        {
+          "page": 7,
+          "score": 0.5417
+        },
+        {
+          "page": 7,
+          "score": 0.3946
+        },
+        {
+          "page": 17,
+          "score": 0.3646
+        },
+        {
+          "page": 1,
+          "score": 0.3611
+        },
+        {
+          "page": 3,
+          "score": 0.3535
+        }
+      ],
+      "top_score": 0.542,
+      "input_tokens": 1217,
+      "output_tokens": 99,
+      "cost_usd": 0.001712,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 11,
+      "category": "absent",
+      "question": "What is the current market price of POL in US dollars?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "grade": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "note": null,
+      "cited_pages": [],
+      "citation_hit": null,
+      "expected_page_retrieved": null,
+      "retrieved": [
+        {
+          "page": 11,
+          "score": 0.4512
+        },
+        {
+          "page": 10,
+          "score": 0.446
+        },
+        {
+          "page": 21,
+          "score": 0.445
+        },
+        {
+          "page": 21,
+          "score": 0.4231
+        },
+        {
+          "page": 21,
+          "score": 0.4197
+        }
+      ],
+      "top_score": 0.451,
+      "input_tokens": 1101,
+      "output_tokens": 5,
+      "cost_usd": 0.001126,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 12,
+      "category": "absent",
+      "question": "How long is the waiting period before a retired validator can withdraw their stake?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "grade": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "note": null,
+      "cited_pages": [],
+      "citation_hit": null,
+      "expected_page_retrieved": null,
+      "retrieved": [
+        {
+          "page": 16,
+          "score": 0.5234
+        },
+        {
+          "page": 15,
+          "score": 0.4462
+        },
+        {
+          "page": 23,
+          "score": 0.3998
+        },
+        {
+          "page": 8,
+          "score": 0.3887
+        },
+        {
+          "page": 14,
+          "score": 0.3811
+        }
+      ],
+      "top_score": 0.523,
+      "input_tokens": 1135,
+      "output_tokens": 5,
+      "cost_usd": 0.00116,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 13,
+      "category": "absent",
+      "question": "What block time do Polygon chains use?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "grade": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "note": null,
+      "cited_pages": [],
+      "citation_hit": null,
+      "expected_page_retrieved": null,
+      "retrieved": [
+        {
+          "page": 14,
+          "score": 0.6546
+        },
+        {
+          "page": 14,
+          "score": 0.5692
+        },
+        {
+          "page": 15,
+          "score": 0.5456
+        },
+        {
+          "page": 19,
+          "score": 0.535
+        },
+        {
+          "page": 13,
+          "score": 0.5312
+        }
+      ],
+      "top_score": 0.655,
+      "input_tokens": 943,
+      "output_tokens": 5,
+      "cost_usd": 0.000968,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 14,
+      "category": "absent",
+      "question": "What percentage of transaction fees do Polygon chains pass to validators?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "grade": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "note": null,
+      "cited_pages": [],
+      "citation_hit": null,
+      "expected_page_retrieved": null,
+      "retrieved": [
+        {
+          "page": 16,
+          "score": 0.6722
+        },
+        {
+          "page": 14,
+          "score": 0.6625
+        },
+        {
+          "page": 21,
+          "score": 0.6503
+        },
+        {
+          "page": 22,
+          "score": 0.618
+        },
+        {
+          "page": 21,
+          "score": 0.6077
+        }
+      ],
+      "top_score": 0.672,
+      "input_tokens": 1537,
+      "output_tokens": 5,
+      "cost_usd": 0.001562,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": 15,
+      "category": "absent",
+      "question": "How much POL does the Polygon Foundation hold?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "grade": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "note": null,
+      "cited_pages": [],
+      "citation_hit": null,
+      "expected_page_retrieved": null,
+      "retrieved": [
+        {
+          "page": 1,
+          "score": 0.6666
+        },
+        {
+          "page": 25,
+          "score": 0.653
+        },
+        {
+          "page": 7,
+          "score": 0.6405
+        },
+        {
+          "page": 8,
+          "score": 0.6254
+        },
+        {
+          "page": 9,
+          "score": 0.6164
+        }
+      ],
+      "top_score": 0.667,
+      "input_tokens": 1101,
+      "output_tokens": 5,
+      "cost_usd": 0.001126,
+      "stop_reason": "end_turn"
+    }
+  ]
+}

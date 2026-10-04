@@ -114,6 +114,8 @@ def _answer_main(argv: list[str]) -> int:
     )
     if result.stop_reason == "max_tokens":
         print("WARNING: answer was cut off at max_tokens")
+    if result.unreadable_pages_warning:
+        print(f"WARNING: {result.unreadable_pages_warning}")
     if result.note:
         print(f"WARNING: model added text after 'not stated' (not part of the answer): {result.note!r}")
     if result.stated and not result.citations:

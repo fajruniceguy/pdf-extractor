@@ -56,14 +56,17 @@ def ingest(pdf_path: str | Path) -> int:
             if not isinstance(chunk.page, int) or chunk.page < 1:
                 raise RuntimeError(f"chunk without a valid page number: {chunk!r}")
 
+        pages_with_chunks = {c.page for c in chunks}
+        empty_pages = [p.page for p in document.pages if p.page not in pages_with_chunks]
+
         vectors, tokens = embed_texts([c.content for c in chunks])
 
         try:
             with conn.transaction():
                 doc_id = conn.execute(
-                    "INSERT INTO documents (filename, page_count, file_sha256) "
-                    "VALUES (%s, %s, %s) RETURNING id",
-                    (path.name, document.page_count, file_hash),
+                    "INSERT INTO documents (filename, page_count, file_sha256, zero_chunk_pages) "
+                    "VALUES (%s, %s, %s, %s) RETURNING id",
+                    (path.name, document.page_count, file_hash, empty_pages),
                 ).fetchone()[0]
                 with conn.cursor() as cur:
                     cur.executemany(
@@ -79,8 +82,6 @@ def ingest(pdf_path: str | Path) -> int:
             print(f"already ingested: {path.name} (document id {existing})")
             return existing
 
-    pages_with_chunks = {c.page for c in chunks}
-    empty_pages = [p.page for p in document.pages if p.page not in pages_with_chunks]
     print(f"Ingested {path.name} as document id {doc_id}")
     print(f"  pages: {document.page_count}")
     print(f"  chunks inserted: {len(chunks)}")

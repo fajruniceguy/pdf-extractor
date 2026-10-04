@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import anthropic
 from dotenv import load_dotenv
 
+from .db import connect
 from .retrieve import SearchResult, search
 
 MODEL = "claude-haiku-4-5-20251001"
@@ -43,6 +44,7 @@ class AnswerResult:
     citations: list[tuple[str, int]]  # (filename, page); empty for a refusal
     unsupported_citations: list[tuple[str, int]]  # cited but not in the retrieved context
     note: str | None  # any text the model added after "not stated"
+    unreadable_pages_warning: str | None  # refusals only: pages the extractor got no text from
     retrieved: list[SearchResult]
     raw_output: str
     stop_reason: str
@@ -53,6 +55,26 @@ class AnswerResult:
 
 def _format_context(results: list[SearchResult]) -> str:
     return "\n\n".join(f"[{r.filename}, page {r.page_number}] {r.content}" for r in results)
+
+
+def _unreadable_pages_warning(document_id: int | None) -> str | None:
+    """Warning text for documents in scope that have pages with no extractable text."""
+    with connect() as conn:
+        rows = conn.execute(
+            "SELECT filename, zero_chunk_pages FROM documents "
+            "WHERE cardinality(zero_chunk_pages) > 0 AND (%(doc)s::int IS NULL OR id = %(doc)s) "
+            "ORDER BY id",
+            {"doc": document_id},
+        ).fetchall()
+    sentences = []
+    for filename, pages in rows:
+        label = "Page" if len(pages) == 1 else "Pages"
+        sentences.append(
+            f"{label} {', '.join(str(p) for p in pages)} of {filename} produced no extractable text."
+        )
+    if not sentences:
+        return None
+    return " ".join(sentences) + " The answer may be present on a page the extractor could not read."
 
 
 def answer(question: str, document_id: int | None = None, k: int = 5) -> AnswerResult:
@@ -86,11 +108,13 @@ def answer(question: str, document_id: int | None = None, k: int = 5) -> AnswerR
         stated = False
         text = "not stated"
         note = rest.strip() or None
+        warning = _unreadable_pages_warning(document_id)
         cited: list[tuple[str, int]] = []
         unsupported: list[tuple[str, int]] = []
     else:
         stated = True
         note = None
+        warning = None
         cited = sorted({(name.strip(), int(page)) for name, page in _CITATION.findall(text)})
         context_labels = {(r.filename, r.page_number) for r in results}
         unsupported = [c for c in cited if c not in context_labels]
@@ -106,6 +130,7 @@ def answer(question: str, document_id: int | None = None, k: int = 5) -> AnswerR
         citations=cited,
         unsupported_citations=unsupported,
         note=note,
+        unreadable_pages_warning=warning,
         retrieved=results,
         raw_output=raw,
         stop_reason=response.stop_reason,

@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "question": "What is the initial supply of POL?",
+    "expected_answer": "10 billion tokens",
+    "expected_pages": [9],
+    "category": "answerable"
+  },
+  {
+    "id": 2,
+    "question": "What are the two purposes POL is emitted for, and at what rate each?",
+    "expected_answer": "Validator rewards 1%, Community Treasury 1%",
+    "expected_pages": [10],
+    "category": "answerable"
+  },
+  {
+    "id": 3,
+    "question": "For how many years can the POL emission rate not be changed?",
+    "expected_answer": "10 years",
+    "expected_pages": [10],
+    "category": "answerable"
+  },
+  {
+    "id": 4,
+    "question": "In absolute terms, how much POL per year goes to the Community Treasury?",
+    "expected_answer": "Approximately 100 million POL",
+    "expected_pages": [17],
+    "category": "answerable"
+  },
+  {
+    "id": 5,
+    "question": "What is the minimal satisfactory POL staking ratio?",
+    "expected_answer": "30-40%",
+    "expected_pages": [19],
+    "category": "answerable"
+  },
+  {
+    "id": 6,
+    "question": "What is the minimal satisfactory Return on Work?",
+    "expected_answer": "4-5%",
+    "expected_pages": [19],
+    "category": "answerable"
+  },
+  {
+    "id": 7,
+    "question": "What average POL price is used as a model input?",
+    "expected_answer": "$5",
+    "expected_pages": [21],
+    "category": "answerable"
+  },
+  {
+    "id": 8,
+    "question": "What is the average yearly running cost per validator?",
+    "expected_answer": "$6,000",
+    "expected_pages": [21],
+    "category": "answerable"
+  },
+  {
+    "id": 9,
+    "question": "What are the four phases of the validator lifecycle?",
+    "expected_answer": "Activation, Subscription, Validation, Retirement",
+    "expected_pages": [15, 16],
+    "category": "answerable"
+  },
+  {
+    "id": 10,
+    "question": "Why is AAVE relevant to POL's design?",
+    "expected_answer": "LEND to AAVE migration precedent and its governance model",
+    "expected_pages": [7],
+    "category": "answerable"
+  },
+  {
+    "id": 11,
+    "question": "What is the current market price of POL in US dollars?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "category": "absent"
+  },
+  {
+    "id": 12,
+    "question": "How long is the waiting period before a retired validator can withdraw their stake?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "category": "absent"
+  },
+  {
+    "id": 13,
+    "question": "What block time do Polygon chains use?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "category": "absent"
+  },
+  {
+    "id": 14,
+    "question": "What percentage of transaction fees do Polygon chains pass to validators?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "category": "absent"
+  },
+  {
+    "id": 15,
+    "question": "How much POL does the Polygon Foundation hold?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "category": "absent"
+  }
+]
