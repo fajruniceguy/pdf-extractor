@@ -241,3 +241,173 @@ Run in session with the project's own `_extract_text_blocks`, `_extract_tables` 
 - Page offset between the PDF page index and the printed page number (last extracted line of the page)
   - PDF page 9 prints 6; PDF page 63 prints 60; PDF page 73 prints 70
 - Full chunk dump of pages 63 and 73 was produced in session and saved to the session scratchpad as `ptba_chunks_63_73.txt`; it is not part of the repo
+
+## 10. Confident wrong answer: HBAP revenue (document 4)
+
+Sources: [DB] stored data queried when this section was written; [live] retrieval re-run against the DB when this section was written; [transcript] the Q4 run of `python cli.py answer ... --doc 4`, printed in the session and not stored in any file. Document 4 is `ptba-quarterly-report.pdf`, ingested with `--column-aware`.
+
+### 1. The run [transcript]
+
+- Question: `What was HBAP's revenue in March 2026?`
+- Answer returned: `HBAP's revenue in March 2026 was 203.513 (in thousands, based on the document's formatting) [ptba-quarterly-report.pdf, page 72].`
+- Citation given: `ptba-quarterly-report.pdf, page 72`
+- Stated flag: `True`
+- Model `claude-haiku-4-5-20251001`; stop_reason `end_turn`; 1594 tokens in / 46 out; one run, no temperature control
+- Retrieved (page, score) as printed: p72 (0.576), p72 (0.575), p71 (0.529), p73 (0.528), p70 (0.512)
+
+### 2. Stored text of chunks 751, 752, 756 and 758 [DB]
+
+- Chunk 751, page 72, 800 characters, verbatim:
+
+````text
+rwise stated)
+9. INVESTASI (lanjutan) 9. INVESTMENTS (continued)
+a. Investasi pada ventura bersama (lanjutan) a. Investments in joint ventures (continued)
+Berikut ini merupakan ringkasan informasi Below is the summarised financial
+keuangan dari BPI, ventura bersama information for BPI, a significant joint venture
+yang signifikan bagi Grup pada tanggal for the Group as of March 31, 2026 and
+31 Maret 2026 dan 2025: (lanjutan) 2025: (continued)
+Ringkasan laporan laba rugi dan Summarised statements of profit or loss and
+dan penghasilan komprehensif lain other comprehensive income
+31 Maret 2026/ 31 Maret 2025/
+March 31, 2026 March 31, 2025
+Pendapatan 203.513 240.534 Revenue
+Beban pokok pendapatan (126.922) (152.708) Cost of revenue
+Beban umum dan administrasi (29.459) (27.202) General and admin
+````
+
+- Chunk 752, page 72, 800 characters, verbatim:
+
+````text
+tan 203.513 240.534 Revenue
+Beban pokok pendapatan (126.922) (152.708) Cost of revenue
+Beban umum dan administrasi (29.459) (27.202) General and administrative expenses
+Beban keuangan, neto (3.740) (295) Finance expenses, net
+Beban lainnya, neto (22.929) (8.364) Other expenses, net
+Laba sebelum pajak penghasilan 20.463 51.965 Profit before income tax
+Beban pajak penghasilan - (35.187) Income tax expenses
+Laba periode berjalan 20.463 16.778 Profit for the period
+Penghasilan komprehensif lain - - Other comprehensive income
+Jumlah penghasilan komprehensif Total comprehensive income
+periode berjalan 20.463 16.778 for the period
+Berikut ini merupakan ringkasan informasi Below is the summarised financial information
+keuangan dari HBAP, ventura bersama for HBAP, a significant joint venture for th
+````
+
+- Chunk 756, page 73, 800 characters, verbatim:
+
+````text
+rwise stated)
+9. INVESTASI (lanjutan) 9. INVESTMENTS (continued)
+a. Investasi pada ventura bersama (lanjutan) a. Investments in joint ventures (continued)
+Berikut ini merupakan ringkasan informasi Below is the summarised financial information
+keuangan dari HBAP, ventura bersama for HBAP, a significant joint venture for the
+yang signifikan bagi Grup pada tanggal Group as of March 31, 2026 and 2025:
+31 Maret 2026 dan 2025: (lanjutan) (continued)
+Ringkasan laporan laba rugi dan Summarised statements of profit or loss and
+dan penghasilan komprehensif lain other comprehensive income
+31 Maret 2026/ 31 Maret 2025/
+March 31, 2026 March 31, 2025
+Pendapatan 567.618 554.473 Revenue
+Beban pokok pendapatan (516.544) (526.190) Cost of revenue
+Beban umum dan administrasi (21.708) (26.037) General and adm
+````
+
+- Chunk 758, page 73, 800 characters, verbatim:
+
+````text
+ncome
+periode berjalan 714.992 183.979 for the period
+Perusahaan telah menjaminkan seluruh saham The Company has pledged all of its existing
+yang dimilikinya di entitas HBAP baik yang share ownership in HBAP at the signing of the
+dimiliki pada saat penandatanganan Akta Gadai Deed of Shares Pledge and any future shares
+Saham atau saham tambahan dimasa yang to the China Export-Import Bank as collateral
+akan datang kepada China Export-Import Bank for the loan obtained for the HBAP project. The
+dalam rangka pemberian pinjaman untuk guarantee was approved by the Minister of
+pendanaan proyek HBAP. Penjaminan tersebut State-Owned Enterprise (“SOE”) on May 17,
+telah mendapat persetujuan dari Menteri BUMN 2018.
+pada tanggal 17 Mei 2018.
+Pada tahun 2021, PLN telah mengajukan surat In 2021, PLN submi
+````
+
+### 3. The 5 retrieved chunks for this question [live]
+
+- Re-run of the same retrieval (document 4, k=5); its (page, score) list equals the Q4 run's: True
+- Rank 1: chunk 753, page 72, score 0.576
+- Rank 2: chunk 752, page 72, score 0.575
+- Rank 3: chunk 748, page 71, score 0.529
+- Rank 4: chunk 758, page 73, score 0.528
+- Rank 5: chunk 744, page 70, score 0.512
+
+### 4. Chunks holding HBAP's revenue row [DB, live]
+
+- Chunk 756, page 73: contains the full row `Pendapatan 567.618 554.473 Revenue`; rank 6 of 805 chunks of document 4, score 0.500; not retrieved (outside the top 5)
+- Chunk 757, page 73: contains only the overlap tail of the row `patan 567.618 554.473 Revenue`; rank 57 of 805 chunks of document 4, score 0.431; not retrieved (outside the top 5)
+- Chunks of document 4 containing the string `567.618`: [756, 757]
+- Is any chunk containing `567.618` among the 5 retrieved: False
+
+### 5. The heading `Berikut ini merupakan ringkasan informasi ... keuangan dari HBAP` against chunk boundaries [DB]
+
+The heading is interleaved with its English column, so it occupies two lines in the stored text: `Berikut ini merupakan ringkasan informasi Below is the summarised financial information` followed by `keuangan dari <entity>, ventura bersama for <entity>, a significant joint venture for th...`.
+
+- Chunk 751, page 72 (800 chars): entity `BPI`; heading line 1 starts at offset 155; the entity name ends at offset 248 of 800
+- Chunk 752, page 72 (800 chars): entity `HBAP`; heading line 1 starts at offset 632; the entity name ends at offset 738 of 800
+- Chunk 753, page 72 (800 chars): entity `HBAP`; heading line 1 is cut at the chunk start (chunk begins 'kan ringkasan informasi Below is the sum'); the entity name ends at offset 88 of 800
+- Chunk 756, page 73 (800 chars): entity `HBAP`; heading line 1 starts at offset 155; the entity name ends at offset 261 of 800
+- Page-72 HBAP heading: it starts at offset 632 of chunk 752 and runs to the end of that chunk (offset 800); line 2 of the heading is cut at `nture for th`
+- Chunk 753 begins inside the same heading: its offset 0 falls inside the word `merupakan` (chunk 753 starts with `kan ringkasan informasi `)
+- The line immediately before that heading in chunk 752 is the last row of BPI's table: `periode berjalan 20.463 16.778 for the period`
+- Chunk 752 ends with: `formation keuangan dari HBAP, ventura bersama for HBAP, a significant joint venture for th`
+- Chunk 753 begins with: `kan ringkasan informasi Below is the summarised financial information keuangan dari HBAP,`
+- Chunk 752 contains `Berikut ini merupakan ringkasan informasi` at offset 632; chunk 753 contains it: False
+- Page-73 occurrence for comparison: see the entry for chunk 756 above
+
+### 6. Where `BPI` appears [DB]
+
+- Chunks of document 4 containing the word `BPI`: 19; pages [59, 70, 71, 72, 119, 131, 133, 136, 142]
+  - Chunk 682, page 59: 1 occurrence(s)
+  - Chunk 685, page 59: 1 occurrence(s)
+  - Chunk 742, page 70: 2 occurrence(s)
+  - Chunk 743, page 70: 4 occurrence(s)
+  - Chunk 744, page 70: 1 occurrence(s)
+  - Chunk 746, page 71: 1 occurrence(s)
+  - Chunk 747, page 71: 2 occurrence(s)
+  - Chunk 748, page 71: 2 occurrence(s)
+  - Chunk 751, page 72: 2 occurrence(s)
+  - Chunk 977, page 119: 1 occurrence(s)
+  - Chunk 1047, page 131: 1 occurrence(s)
+  - Chunk 1055, page 133: 2 occurrence(s)
+  - Chunk 1056, page 133: 2 occurrence(s)
+  - Chunk 1065, page 136: 2 occurrence(s)
+  - Chunk 1066, page 136: 2 occurrence(s)
+  - Chunk 1098, page 142: 1 occurrence(s)
+  - Chunk 1099, page 142: 1 occurrence(s)
+  - Chunk 1101, page 142: 1 occurrence(s)
+  - Chunk 1102, page 142: 1 occurrence(s)
+- On page 72, `BPI` appears only in chunk(s): [751]
+- Chunk 752 (holds `Pendapatan 203.513 240.534 Revenue`) contains `BPI`: False; chunk 751 contains `BPI`: True
+- Retrieved chunks containing `BPI`: [748, 744]
+
+### 7. Units stated in the document [DB]
+
+- Chunks of document 4 containing `Millions of Rupiah` or `Jutaan Rupiah`: 233 of 805
+- Page 72 chunks: [750, 751, 752, 753, 754]; of these, the ones containing the units statement: [750]
+- Chunk 750 contains these two lines verbatim (Indonesian left, English right; the statement is split across the two lines by the bilingual layout):
+
+````text
+(Disajikan dalam Jutaan Rupiah, (Expressed in Millions of Rupiah,
+kecuali dinyatakan lain) unless otherwise stated)
+````
+
+- Chunk 751 starts with `rwise stated)` (the tail of that statement); it does not contain the full statement: True
+- Chunk 752 contains a units statement: False
+- Retrieved chunks containing `Millions of Rupiah` or `Jutaan Rupiah`: []
+- Chunks of document 4 containing `thousand`, `ribuan` or `ribu`: 0
+- The phrase `in thousands` appears in the stored text of document 4: False
+
+### 8. Page 72 extraction mode [DB, live]
+
+- Detector on page 72: two_columns=True; two columns, gutter 7.2pt; words left/right of the gutter 220/230
+- Dot-grouped amounts left/right of the gutter: 19/19 (veto needs at least 5 on each side)
+- Decision with the flag on: vetoed, default extraction used
+- Stored chunks of page 72 (5) identical to chunks built from the default extraction of page 72: True

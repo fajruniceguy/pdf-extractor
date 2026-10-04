@@ -8,7 +8,7 @@ Every returned value must be traceable to its source page. If the answer isn't s
 
 ## Status
 
-A working command-line pipeline: **ingest a PDF, search it, get a cited answer or "not stated"**. It has been run on four real documents with very different layouts (a 42-page technical paper, a 7-page research note, a 25-page whitepaper, and a 152-page bilingual interim financial report), and each extracts differently: the whitepaper cleanly, the others with run-together words and garbled glyphs, mirrored text, or interleaved bilingual columns. It is a prototype: there is no API, no automated tests, and the confidence design below is not built yet. The failure modes found so far are listed under [Known issues](#known-issues).
+A working command-line pipeline: **ingest a PDF, search it, get a cited answer or "not stated"**. It has been run on four real documents with very different layouts (the 42-page Ethereum Yellow Paper, a 7-page Bitget Token research note, the 25-page POL whitepaper, and the 152-page bilingual Indonesian/English PT Bukit Asam (PTBA) Q1 2026 interim consolidated financial statements), and each extracts differently: the POL whitepaper cleanly, the others with run-together words and garbled glyphs (Yellow Paper), mirrored text (Bitget note), or interleaved bilingual columns (PTBA). It is a prototype: there is no API, no automated tests, and the confidence design below is not built yet. The failure modes found so far are listed under [Known issues](#known-issues).
 
 ## What works
 
@@ -24,7 +24,7 @@ A working command-line pipeline: **ingest a PDF, search it, get a cited answer o
 
 Eval on the POL whitepaper (`python eval/run_eval.py`): **10/10 answers correct, 10/10 cited the expected page, 5/5 absent questions correctly refused.** Read this with its conditions: one run, one document (the cleanest of the four), I wrote the questions, two of the 15 questions were seen while tuning the prompt, and the SDK exposes no temperature setting so run-to-run variation is unmeasured. The raw numbers behind this and the other findings are in `docs/M4_FINDINGS.md`.
 
-A failure the eval does not cover: on the bilingual financial report, asked *"What was HBAP's revenue in March 2026?"*, the system answered 203.513 (page 72), stated confidently and with an unsupported "(in thousands...)" unit note. 203.513 is BPI's revenue, another joint venture summarised on the same page; HBAP's actual figure is 567.618, on page 73. The cause: the chunk holding BPI's numbers ends with the heading that introduces HBAP, while the heading that names BPI sits in the previous chunk, which was not retrieved, so the model saw one entity's figures under another's name. HBAP's own revenue chunk was not in the top 5 either.
+A failure the eval does not cover: on the PTBA interim financial statements, asked *"What was HBAP's revenue in March 2026?"*, the system answered 203.513 (page 72), stated confidently and with an unsupported "(in thousands...)" unit note. 203.513 is BPI's March 2026 revenue, another joint venture summarised on the same page; HBAP's actual figure is 567.618, on page 73. The cause: the chunk holding BPI's numbers ends with the heading that introduces HBAP, while the heading that names BPI sits in the previous chunk, which was not retrieved, so the model saw one entity's figures under another's name. HBAP's own revenue chunk was not in the top 5 either.
 
 ## Experimental: column-aware extraction
 
@@ -33,19 +33,19 @@ Bilingual reports print Indonesian and English side by side, and default extract
 - Off by default. `python cli.py file.pdf --column-aware` (report) or `python cli.py ingest --column-aware file.pdf`.
 - A page counts as two-column only if the word x-midpoints split into two clusters with an empty gutter (at least 3 pt) that no word crosses. Otherwise the default extractor runs unchanged.
 - Table veto: if both sides of the gutter hold 5 or more dot-grouped amounts (e.g. `13.045.179`), the page falls back to default extraction, because splitting would put the current-year figure with one language's label and the prior-year figure with the other's.
-- On the 152-page report: 75 pages get column separation, 31 are vetoed as tables, 45 fall back for no clear gutter and 1 for too few words. On the single-column whitepaper the output is byte-identical with the flag on or off.
+- On the 152-page PTBA statements: 75 pages get column separation, 31 are vetoed as tables, 45 fall back for no clear gutter and 1 for too few words. On the single-column POL whitepaper the output is byte-identical with the flag on or off.
 - The extraction mode is not stored in the database. Ingestion is keyed on the file hash, so changing mode for an ingested file means deleting its document row first.
 
 ## Known issues
 
 - Retrieval similarity does not separate answerable from absent questions: in the eval, a correct answer had a top score of 0.409 while absent questions scored up to 0.672. A similarity threshold alone cannot flag low-confidence answers.
 - Wrong-entity answers: a chunk that loses its table header, or gains the next entity's heading, can be attributed to the wrong entity (the BPI/HBAP case above).
-- Fixed-size chunks start mid-word and can cut numbers (4 mid-number cuts at chunk ends in the 42-page paper).
-- Table detection found nothing on the financial report: `find_tables` returned 0 tables on all 15 pages I checked, including the statement of changes in equity (page 9) and the HBAP profit-or-loss summary (page 73). Tables are also never chunked separately, so table facts reach the index only as flattened text lines, and a table's header and its rows can land in different chunks.
-- Some PDFs extract with words run together (the Yellow Paper has 140 of 253 chunks with a 25+ letter token); column-aware mode does not address this.
-- Unresolved glyph tokens `(cid:N)` appear in 152 of 253 chunks of the Yellow Paper.
-- No OCR: image-only pages are reported (`zero_chunk_pages`, plus the warning on refusals) but not read. The warning was verified on a synthetic PDF only; the only ingested page with no extractable text is page 2 of the financial report, which I did not inspect visually.
-- The PDF page index and the printed page number can differ (the financial report prints `60` on PDF page 63); citations use the PDF index.
+- Fixed-size chunks start mid-word and can cut numbers (4 mid-number cuts at chunk ends in the Ethereum Yellow Paper).
+- Table detection found nothing on the PTBA statements: `find_tables` returned 0 tables on all 15 pages I checked, including the statement of changes in equity (page 9) and the HBAP profit-or-loss summary (page 73). Tables are also never chunked separately, so table facts reach the index only as flattened text lines, and a table's header and its rows can land in different chunks.
+- Some PDFs extract with words run together (the Ethereum Yellow Paper has 140 of 253 chunks with a 25+ letter token); column-aware mode does not address this.
+- Unresolved glyph tokens `(cid:N)` appear in 152 of 253 chunks of the Ethereum Yellow Paper.
+- No OCR: image-only pages are reported (`zero_chunk_pages`, plus the warning on refusals) but not read. The warning was verified on a synthetic PDF only; the only ingested page with no extractable text is page 2 of the PTBA statements, which I did not inspect visually.
+- The PDF page index and the printed page number can differ (the PTBA statements print `60` on PDF page 63); citations use the PDF index.
 - `find_tables` (pdfplumber) produces false positives on 1x2 and 2x1 bordered regions. Not yet fixed.
 - Tested on Python 3.10.11 only.
 
@@ -87,6 +87,6 @@ python cli.py answer "question" [--doc ID]   # cited answer or "not stated"
 python eval/run_eval.py                      # needs the POL whitepaper ingested as document 3
 ```
 
-Rough costs so far, computed from reported token counts at list prices rather than from a bill: embedding the 152-page report took 179,338 tokens, about $0.004; an answered question costs about $0.001 to $0.002.
+Rough costs so far, computed from reported token counts at list prices rather than from a bill: embedding the 152-page PTBA statements took 179,338 tokens, about $0.004; an answered question costs about $0.001 to $0.002.
 
 `tests/fixtures/synthetic_scanned_page.pdf` is a synthetic PDF with an image-only page, used to check the zero-chunk warning by hand; it is a fixture, not an automated test.
