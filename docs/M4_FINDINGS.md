@@ -411,3 +411,107 @@ kecuali dinyatakan lain) unless otherwise stated)
 - Dot-grouped amounts left/right of the gutter: 19/19 (veto needs at least 5 on each side)
 - Decision with the flag on: vetoed, default extraction used
 - Stored chunks of page 72 (5) identical to chunks built from the default extraction of page 72: True
+
+## 11. PTBA diagnostic eval (document 4, 17 questions)
+
+Sources: [results_ptba.json] `eval/results_ptba.json`; [DB] stored chunks of document 4 read when this section was written; [results.json, results_run1-3.json] the POL eval files; [transcript] printed in the session, not stored in any file. Page numbers are PDF indices.
+
+### 1. Setup and conditions
+
+- Questions: 17 (9 narrative, 5 table, 3 absent) in `eval/questions_ptba.json`; the list was supplied by the user, and the user verified the absent questions against the PDF [transcript]
+- seen_before (run before the eval): ['N7', 'N8', 'T1', 'A1']
+- Gold substrings found in a stored chunk on the expected page: 14 of 14 [DB]
+- Grading: automatic; narrative rules (keyword and date checks) written before the run; one rule (N2) corrected before the run after an offline test on synthetic answers; no rule, question or prompt changed after results [transcript]
+- One run; run_at 2026-10-05T04:45:35.964974+00:00; model claude-haiku-4-5-20251001; no temperature control (the installed SDK exposes none); 25957 tokens in / 631 out; cost $0.029112 [results_ptba.json]
+
+### 2. Per-category split [results_ptba.json]
+
+- Columns: n / correct / unsure / refused (stated False) / WRONG-AND-CONFIDENT (stated True, incorrect) / citation-correct (of the correct answers) / retrieval-hit
+  - narrative: 9 / 6 / 0 / 3 / 0 / 6/6 / 7/9
+  - table: 5 / 0 / 0 / 2 / 3 / 0/0 / 1/5
+  - absent: 3 / 3 / 0 / 3 / 0 / - / -
+- Answerable questions (14): correct ['N1', 'N4', 'N5', 'N6', 'N7', 'N8']; refused ['N2', 'N3', 'N9', 'T4', 'T5']; WRONG-AND-CONFIDENT ['T1', 'T2', 'T3']; UNSURE []
+- Absent questions: passed (stated False) ['A1', 'A3', 'A4']
+- Questions seen before the eval (4): correct or passed ['N7', 'N8', 'A1']; refused []; WRONG-AND-CONFIDENT ['T1']
+- Questions not seen before the eval (13): correct or passed ['N1', 'N4', 'N5', 'N6', 'A3', 'A4']; refused ['N2', 'N3', 'N9', 'T4', 'T5']; WRONG-AND-CONFIDENT ['T2', 'T3']
+- Per question: N1 CORRECT stated True cited [49, 63]; N2 REFUSED stated False cited -; N3 REFUSED stated False cited -; N4 CORRECT stated True cited [73]; N5 CORRECT stated True cited [73]; N6 CORRECT stated True cited [73]; N7 CORRECT stated True cited [63]; N8 CORRECT stated True cited [73]; N9 REFUSED stated False cited -; T1 WRONG stated True cited [72]; T2 WRONG stated True cited [72]; T3 WRONG stated True cited [72]; T4 REFUSED stated False cited -; T5 REFUSED stated False cited -; A1 PASS stated False cited -; A3 PASS stated False cited -; A4 PASS stated False cited -
+
+### 3. T3: gold row in the context, answer from another entity's chunk [results_ptba.json, DB]
+
+- Question: `What was HBAP's total comprehensive income for the period ended March 31, 2026?`; expected `714.992` on page [73]; gold substring `714.992 183.979`
+- Answer returned: `According to the context, HBAP's total comprehensive income for the period ended March 31, 2026 was 20.463 million Rupiah. [ptba-quarterly-report.pdf, page 72]`; stated True; cited pages [72]; grader: expected [714992] not present; answer contains [20463]
+- Top 5: #1 chunk 752 p72 0.614; #2 chunk 753 p72 0.601; #3 chunk 744 p70 0.585; #4 chunk 758 p73 0.555; #5 chunk 838 p90 0.554
+  - Rank 1, chunk 752, page 72: contains `714.992` False; contains `20.463` True; contains `HBAP` True; contains `BPI` False
+  - Rank 2, chunk 753, page 72: contains `714.992` False; contains `20.463` False; contains `HBAP` True; contains `BPI` False
+  - Rank 3, chunk 744, page 70: contains `714.992` False; contains `20.463` False; contains `HBAP` True; contains `BPI` True
+  - Rank 4, chunk 758, page 73: contains `714.992` True; contains `20.463` False; contains `HBAP` True; contains `BPI` False
+  - Rank 5, chunk 838, page 90: contains `714.992` False; contains `20.463` False; contains `HBAP` False; contains `BPI` False
+- retrieval_hit True, gold rank 4; T3 is the only table question with a retrieval hit (hits: ['T3'])
+- Chunk 758 (page 73, rank 4), first two lines verbatim:
+
+````text
+ncome
+periode berjalan 714.992 183.979 for the period
+````
+
+- The row label line sits in chunk 757 (not retrieved for T3): `Jumlah laba komprehensif Total comprehensive income`; chunk 757 in T3's top 5: False
+- Chunk 752 (page 72, rank 1), BPI's total comprehensive income row, verbatim:
+
+````text
+Jumlah penghasilan komprehensif Total comprehensive income
+periode berjalan 20.463 16.778 for the period
+````
+
+### 4. T4: same chunks as T1 and T2, but a refusal [results_ptba.json, DB]
+
+- T1 `What was HBAP's revenue for the period ended March 31, 2026?`: stated True; answer `According to the context, HBAP's revenue for the period ended March 31, 2026 was 203.513 [ptba-quarterly-report.pdf, page 72].`
+  - Top 5: #1 chunk 753 p72 0.603; #2 chunk 752 p72 0.603; #3 chunk 744 p70 0.563; #4 chunk 758 p73 0.552; #5 chunk 748 p71 0.543
+- T2 `What was HBAP's profit for the period ended March 31, 2026?`: stated True; answer `According to the context, HBAP's profit for the period ended March 31, 2026 was 20.463 (in millions) [ptba-quarterly-report.pdf, page 72].`
+  - Top 5: #1 chunk 752 p72 0.604; #2 chunk 753 p72 0.600; #3 chunk 744 p70 0.594; #4 chunk 758 p73 0.553; #5 chunk 748 p71 0.545
+- T3 `What was HBAP's total comprehensive income for the period ended March 31, 2026?`: stated True; answer `According to the context, HBAP's total comprehensive income for the period ended March 31, 2026 was 20.463 million Rupiah. [ptba-quarterly-report.pdf, page 72]`
+  - Top 5: #1 chunk 752 p72 0.614; #2 chunk 753 p72 0.601; #3 chunk 744 p70 0.585; #4 chunk 758 p73 0.555; #5 chunk 838 p90 0.554
+- T4 `What was HBAP's revenue for the period ended March 31, 2025?`: stated False; answer `not stated`
+  - Top 5: #1 chunk 752 p72 0.605; #2 chunk 753 p72 0.600; #3 chunk 744 p70 0.568; #4 chunk 758 p73 0.552; #5 chunk 748 p71 0.536
+- Top-5 chunk-id sets equal to T4's: T1 True; T2 True; T3 False (T3 differs by: only in T3 [838], only in T4 [748])
+- Order of chunks 752 and 753 in each top 5: T1: #1 chunk 753, #2 chunk 752; T2: #1 chunk 752, #2 chunk 753; T3: #1 chunk 752, #2 chunk 753; T4: #1 chunk 752, #2 chunk 753
+- Period asked: T1, T2, T3 March 31, 2026; T4 March 31, 2025
+- Chunk 752 contains `240.534` (BPI's March 31, 2025 revenue): True; contains `554.473` (HBAP's March 31, 2025 revenue): False
+- Chunks of document 4 containing `554.473`: [756, 757]; any of them in T4's top 5: False
+- Each question was run once; run-to-run variation of these answers was not measured
+
+### 5. Retrieval-hit rate [results_ptba.json]
+
+- Definition: any top-5 chunk contains `gold_substring` (whitespace collapsed in both texts); answer-bearing rank = first such chunk
+- narrative: 7/9
+- table: 1/5
+- Answerable overall: 8/14; hit from a chunk on an expected page: 7/14; hits only from other pages: ['N9'] (gold hit pages [[71]])
+- Retrieval hit = True (8): N1 CORRECT; N4 CORRECT; N5 CORRECT; N6 CORRECT; N7 CORRECT; N8 CORRECT; N9 REFUSED; T3 WRONG
+- Retrieval hit = False (6): N2 REFUSED; N3 REFUSED; T1 WRONG; T2 WRONG; T4 REFUSED; T5 REFUSED
+- Per answerable question (hit, rank of first answer-bearing chunk, pages of the top 5):
+  - N1: hit True, rank 4, expected pages [63], top-5 pages [63, 63, 43, 63, 49]
+  - N2: hit False, rank None, expected pages [63], top-5 pages [98, 105, 104, 99, 97]
+  - N3: hit False, rank None, expected pages [63], top-5 pages [35, 37, 39, 36, 34]
+  - N4: hit True, rank 1, expected pages [73], top-5 pages [73, 73, 73, 71, 119]
+  - N5: hit True, rank 1, expected pages [73], top-5 pages [73, 73, 73, 71, 129]
+  - N6: hit True, rank 1, expected pages [73], top-5 pages [73, 73, 73, 71, 128]
+  - N7: hit True, rank 1, expected pages [63], top-5 pages [63, 63, 49, 49, 106]
+  - N8: hit True, rank 1, expected pages [73], top-5 pages [73, 124, 123, 11, 124]
+  - N9: hit True, rank 3, expected pages [74], top-5 pages [73, 73, 71, 73, 71]
+  - T1: hit False, rank None, expected pages [73], top-5 pages [72, 72, 70, 73, 71]
+  - T2: hit False, rank None, expected pages [73], top-5 pages [72, 72, 70, 73, 71]
+  - T3: hit True, rank 4, expected pages [73], top-5 pages [72, 72, 70, 73, 90]
+  - T4: hit False, rank None, expected pages [73], top-5 pages [72, 72, 70, 73, 71]
+  - T5: hit False, rank None, expected pages [72], top-5 pages [89, 90, 70, 152, 152]
+
+### 6. POL eval for comparison [results.json, results_run1-3.json]
+
+- results.json: run_at 2026-10-05T00:07:21.442441+00:00; correct 10/10; citation_ok 10/10; correctly refused 5/5; unsure 0
+- results_run1.json: run_at 2026-10-05T00:05:51.442821+00:00; correct 10/10; citation_ok 10/10; correctly refused 5/5; unsure 0
+- results_run2.json: run_at 2026-10-05T00:06:36.149723+00:00; correct 10/10; citation_ok 10/10; correctly refused 5/5; unsure 0
+- results_run3.json: run_at 2026-10-05T00:07:21.442441+00:00; correct 10/10; citation_ok 10/10; correctly refused 5/5; unsure 0
+- stated flags, cited pages and grades identical across results_run1, run2 and run3: True
+- answer text of results_run1.json identical to results_run3.json for 9/15 questions
+- answer text of results_run2.json identical to results_run3.json for 9/15 questions
+- results.json and results_run3.json have the same run_at: True; answer text identical for 15/15 questions
+- POL answerable questions with the expected page among the top 5 (results.json): 10/10
+- Sections 5 and 8 of this file describe the POL eval as a single run; the re-runs above are later

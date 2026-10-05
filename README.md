@@ -17,14 +17,26 @@ A working command-line pipeline: **ingest a PDF, search it, get a cited answer o
 - **Ingestion** (`extractor/ingest.py`): extract, chunk, embed (`text-embedding-3-small`, 1536 dims) and insert the document and all its chunks in one transaction. Files are identified by sha256, so re-running ingest on the same file inserts nothing and never re-embeds. Pages that produced no chunks are recorded in `documents.zero_chunk_pages`.
 - **Retrieval** (`extractor/retrieve.py`): cosine distance in pgvector, top 5 with page numbers and scores, optionally restricted to one document. An HNSW index exists. At the two table sizes I checked (253 and 349 rows) the planner chose a sequential scan, and forcing it to avoid sequential scans showed the query can use the index; behaviour at larger sizes is untested.
 - **Answering** (`extractor/answer.py`): retrieved chunks go to `claude-haiku-4-5-20251001` with `max_tokens=500`; the model may answer only from the labelled context and must reply exactly `not stated` when the context doesn't state the answer. Citations are parsed and checked against the retrieved `(filename, page)` pairs. On a refusal, if the searched document has pages that produced no text, the output warns that the answer may be on a page the extractor could not read.
-- **Eval** (`eval/`): 15 labeled questions (10 answerable, 5 absent) against one document, graded automatically; prints answer accuracy, citation accuracy and correct-refusal rate.
+- **Eval** (`eval/`): 15 labeled questions (10 answerable, 5 absent) against the POL whitepaper, graded automatically; prints answer accuracy, citation accuracy and correct-refusal rate. A separate 17-question diagnostic covers the PTBA statements (`eval/run_eval_ptba.py`).
 - **Experimental column-aware extraction** (opt-in, see below).
 
 ## Measured results
 
-Eval on the POL whitepaper (`python eval/run_eval.py`): **10/10 answers correct, 10/10 cited the expected page, 5/5 absent questions correctly refused.** Read this with its conditions: one run, one document (the cleanest of the four), I wrote the questions, two of the 15 questions were seen while tuning the prompt, and the SDK exposes no temperature setting so run-to-run variation is unmeasured. The raw numbers behind this and the other findings are in `docs/M4_FINDINGS.md`.
+Two evals on two very different documents, with the same code, prompt and model. They do not tell the same story.
 
-A failure the eval does not cover: on the PTBA interim financial statements, asked *"What was HBAP's revenue in March 2026?"*, the system answered 203.513 (page 72), stated confidently and with an unsupported "(in thousands...)" unit note. 203.513 is BPI's March 2026 revenue, another joint venture summarised on the same page; HBAP's actual figure is 567.618, on page 73. The cause: the chunk holding BPI's numbers ends with the heading that introduces HBAP, while the heading that names BPI sits in the previous chunk, which was not retrieved, so the model saw one entity's figures under another's name. HBAP's own revenue chunk was not in the top 5 either.
+**POL whitepaper** (single-column prose, default extraction; `python eval/run_eval.py`): **10/10 answers correct, 10/10 cited the expected page, 5/5 absent questions correctly refused.** Conditions: one document (the cleanest of the four), I wrote the questions, two of the 15 were seen while tuning the prompt. I re-ran it three more times: 10/10, 10/10 and 5/5 each time, with identical stated flags, cited pages and grades, though the answer wording varied (the SDK exposes no temperature setting).
+
+**PTBA statements** (bilingual, table-heavy, ingested with `--column-aware`; `python eval/run_eval_ptba.py`): 17 questions I specified, the absent ones checked against the PDF; one run, four questions seen before. Prose works, tables do not.
+
+| | n | correct | refused | wrong and confident | right chunk in top 5 |
+|---|---|---|---|---|---|
+| narrative | 9 | 6 | 3 | 0 | 7 |
+| table | 5 | 0 | 2 | 3 | 1 |
+| absent | 3 | 3 | 3 | 0 | - |
+
+The POL questions are explicit values in single-column prose. The PTBA table questions ask for cells whose entity heading can sit in a neighbouring chunk, which is the failure below. Per-question detail, including a table question (T4) that refused on exactly the same retrieved chunks that produced wrong answers for T1 and T2, is in `docs/M4_FINDINGS.md`.
+
+The failure behind the table result: on the PTBA interim financial statements, asked *"What was HBAP's revenue in March 2026?"*, the system answered 203.513 (page 72), stated confidently and with an unsupported "(in thousands...)" unit note. 203.513 is BPI's March 2026 revenue, another joint venture summarised on the same page; HBAP's actual figure is 567.618, on page 73. The cause: the chunk holding BPI's numbers ends with the heading that introduces HBAP, while the heading that names BPI sits in the previous chunk, which was not retrieved, so the model saw one entity's figures under another's name. HBAP's own revenue chunk was not in the top 5 either. The PTBA eval reproduces it: the three HBAP table questions (revenue, profit, total comprehensive income) were all answered with BPI's page-72 figures.
 
 ## Experimental: column-aware extraction
 
@@ -85,6 +97,7 @@ python cli.py docs                           # list ingested documents and their
 python cli.py ask "question" [--doc ID]      # top 5 chunks with file, page and score
 python cli.py answer "question" [--doc ID]   # cited answer or "not stated"
 python eval/run_eval.py                      # needs the POL whitepaper ingested as document 3
+python eval/run_eval_ptba.py                 # needs the PTBA statements ingested as document 4 with --column-aware
 ```
 
 Rough costs so far, computed from reported token counts at list prices rather than from a bill: embedding the 152-page PTBA statements took 179,338 tokens, about $0.004; an answered question costs about $0.001 to $0.002.
