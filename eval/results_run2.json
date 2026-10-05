@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-05T00:07:21.442441+00:00",
+  "run_at": "2026-10-05T00:06:36.149723+00:00",
   "model": "claude-haiku-4-5-20251001",
   "document_id": 3,
   "summary": {
@@ -11,8 +11,8 @@
     "absent": 5,
     "correctly_refused": 5,
     "input_tokens": 17791,
-    "output_tokens": 862,
-    "cost_usd": 0.022101
+    "output_tokens": 939,
+    "cost_usd": 0.022486
   },
   "results": [
     {
@@ -73,8 +73,8 @@
       "grade": "PASS",
       "detail": "3/3 expected facts found",
       "stated": true,
-      "answer": "According to [POL Whitepaper v0.2.pdf, page 10], POL is emitted for two purposes:\n\n1. **Validator rewards**: at a yearly emission rate of 1% of the POL supply to incentivize validator onboarding and retention.\n\n2. **Ecosystem support**: at a yearly emission rate of 1% of the POL supply to provide ongoing support for further development and growth of the Polygon ecosystem through the Community Treasury.\n\nBoth emission rates cannot be increased beyond 1%, though after 10 years the community can decide to decrease them via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
-      "raw_output": "According to [POL Whitepaper v0.2.pdf, page 10], POL is emitted for two purposes:\n\n1. **Validator rewards**: at a yearly emission rate of 1% of the POL supply to incentivize validator onboarding and retention.\n\n2. **Ecosystem support**: at a yearly emission rate of 1% of the POL supply to provide ongoing support for further development and growth of the Polygon ecosystem through the Community Treasury.\n\nBoth emission rates cannot be increased beyond 1%, though after 10 years the community can decide to decrease them via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "answer": "According to the context, POL is emitted for two purposes at the following rates:\n\n1. **Validator rewards**: POL is emitted at a yearly rate of 1% of the POL supply to incentivize validator onboarding and retention as a base protocol reward [POL Whitepaper v0.2.pdf, page 10].\n\n2. **Ecosystem support**: POL is emitted at a yearly rate of 1% of the POL supply to provide ongoing support for the Polygon ecosystem's development and growth through the Community Treasury [POL Whitepaper v0.2.pdf, page 10].\n\nBoth emission rates cannot be increased beyond 1%, but after 10 years the community can decide to decrease them via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "raw_output": "According to the context, POL is emitted for two purposes at the following rates:\n\n1. **Validator rewards**: POL is emitted at a yearly rate of 1% of the POL supply to incentivize validator onboarding and retention as a base protocol reward [POL Whitepaper v0.2.pdf, page 10].\n\n2. **Ecosystem support**: POL is emitted at a yearly rate of 1% of the POL supply to provide ongoing support for the Polygon ecosystem's development and growth through the Community Treasury [POL Whitepaper v0.2.pdf, page 10].\n\nBoth emission rates cannot be increased beyond 1%, but after 10 years the community can decide to decrease them via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
       "note": null,
       "cited_pages": [
         10
@@ -105,8 +105,8 @@
       ],
       "top_score": 0.608,
       "input_tokens": 1015,
-      "output_tokens": 152,
-      "cost_usd": 0.001775,
+      "output_tokens": 187,
+      "cost_usd": 0.00195,
       "stop_reason": "end_turn"
     },
     {
@@ -120,8 +120,8 @@
       "grade": "PASS",
       "detail": "2/2 expected facts found",
       "stated": true,
-      "answer": "For 10 years, the POL emission rate cannot be changed [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
-      "raw_output": "For 10 years, the POL emission rate cannot be changed [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "answer": "According to the context, the POL emission rate cannot be changed for the initial 10 years [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
+      "raw_output": "According to the context, the POL emission rate cannot be changed for the initial 10 years [POL Whitepaper v0.2.pdf, page 10]. After that period, the community can decide to decrease it via the governance framework [POL Whitepaper v0.2.pdf, page 10].",
       "note": null,
       "cited_pages": [
         10
@@ -152,8 +152,8 @@
       ],
       "top_score": 0.573,
       "input_tokens": 1011,
-      "output_tokens": 68,
-      "cost_usd": 0.001351,
+      "output_tokens": 74,
+      "cost_usd": 0.001381,
       "stop_reason": "end_turn"
     },
     {
@@ -167,8 +167,8 @@
       "grade": "PASS",
       "detail": "1/1 expected facts found",
       "stated": true,
-      "answer": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This corresponds to the 1% yearly emission rate of the POL supply dedicated to this purpose.",
-      "raw_output": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This corresponds to the 1% yearly emission rate of the POL supply dedicated to this purpose.",
+      "answer": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This represents a 1% annual emission rate of the POL supply dedicated to this purpose [POL Whitepaper v0.2.pdf, page 17].",
+      "raw_output": "According to the context, approximately 100 million POL per year goes to the Community Treasury [POL Whitepaper v0.2.pdf, page 17]. This represents a 1% annual emission rate of the POL supply dedicated to this purpose [POL Whitepaper v0.2.pdf, page 17].",
       "note": null,
       "cited_pages": [
         17
@@ -199,8 +199,8 @@
       ],
       "top_score": 0.591,
       "input_tokens": 1127,
-      "output_tokens": 60,
-      "cost_usd": 0.001427,
+      "output_tokens": 76,
+      "cost_usd": 0.001507,
       "stop_reason": "end_turn"
     },
     {
@@ -214,8 +214,8 @@
       "grade": "PASS",
       "detail": "2/2 expected facts found",
       "stated": true,
-      "answer": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19].",
-      "raw_output": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19].",
+      "answer": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19], which is roughly equivalent to the current staking ratio on the Polygon PoS chain.",
+      "raw_output": "The minimal satisfactory POL staking ratio is 30-40% [POL Whitepaper v0.2.pdf, page 19], which is roughly equivalent to the current staking ratio on the Polygon PoS chain.",
       "note": null,
       "cited_pages": [
         19
@@ -246,8 +246,8 @@
       ],
       "top_score": 0.664,
       "input_tokens": 1161,
-      "output_tokens": 36,
-      "cost_usd": 0.001341,
+      "output_tokens": 55,
+      "cost_usd": 0.001436,
       "stop_reason": "end_turn"
     },
     {
@@ -403,8 +403,8 @@
       "grade": "PASS",
       "detail": "4/4 expected facts found",
       "stated": true,
-      "answer": "According to the context, the four phases of the validator lifecycle are: [POL Whitepaper v0.2.pdf, page 15]\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract. [POL Whitepaper v0.2.pdf, page 16]",
-      "raw_output": "According to the context, the four phases of the validator lifecycle are: [POL Whitepaper v0.2.pdf, page 15]\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract. [POL Whitepaper v0.2.pdf, page 16]",
+      "answer": "According to the POL Whitepaper, the four phases of the validator lifecycle are [POL Whitepaper v0.2.pdf, page 15]:\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract [POL Whitepaper v0.2.pdf, page 16].",
+      "raw_output": "According to the POL Whitepaper, the four phases of the validator lifecycle are [POL Whitepaper v0.2.pdf, page 15]:\n\n1. **Activation**: Validators get initiated as part of the validator pool by depositing POL into the staking contract on the Staking Layer. Once initiated, validators become eligible to receive base protocol rewards.\n\n2. **Subscription**: Once initiated, validators are allowed to subscribe to validate any Polygon chain.\n\n3. **Validation**: If a validator meets all the criteria of the Polygon chain it subscribed to, it becomes a member of that chain's validator set. Validators can validate multiple chains, and their POL stake is acknowledged on each of those chains.\n\n4. **Retirement**: Validators can leave the validator pool at any point. Once retirement is initiated, a predefined waiting period commences, allowing for potential pending slashing. After the waiting period, validators are able to withdraw their POL stake from the deposit contract [POL Whitepaper v0.2.pdf, page 16].",
       "note": null,
       "cited_pages": [
         15,
@@ -436,8 +436,8 @@
       ],
       "top_score": 0.674,
       "input_tokens": 1090,
-      "output_tokens": 233,
-      "cost_usd": 0.002255,
+      "output_tokens": 236,
+      "cost_usd": 0.00227,
       "stop_reason": "end_turn"
     },
     {
@@ -451,8 +451,8 @@
       "grade": "PASS",
       "detail": "3/3 expected facts found",
       "stated": true,
-      "answer": "According to the whitepaper, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
-      "raw_output": "According to the whitepaper, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
+      "answer": "According to the context, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
+      "raw_output": "According to the context, AAVE is relevant to POL's design for two reasons [POL Whitepaper v0.2.pdf, page 7]:\n\n1. AAVE is the successor of LEND, the initial native token of Aave; the Aave community executed a successful and beneficial migration from LEND to AAVE.\n\n2. AAVE provides its holders governance rights via a comprehensive governance model.",
       "note": null,
       "cited_pages": [
         7
@@ -483,8 +483,8 @@
       ],
       "top_score": 0.542,
       "input_tokens": 1217,
-      "output_tokens": 101,
-      "cost_usd": 0.001722,
+      "output_tokens": 99,
+      "cost_usd": 0.001712,
       "stop_reason": "end_turn"
     },
     {
