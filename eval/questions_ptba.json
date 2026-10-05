@@ -1,0 +1,155 @@
+[
+  {
+    "id": "N1",
+    "category": "narrative",
+    "question": "How does the Group determine the discount rate used for the pension obligation?",
+    "expected_answer": "government bond interest rates, as there is no deep market for high-quality corporate bonds",
+    "expected_pages": [63],
+    "gold_substring": "obligasi pemerintah",
+    "seen_before": false
+  },
+  {
+    "id": "N2",
+    "category": "narrative",
+    "question": "In which note are the carrying amounts of employee benefits liabilities disclosed?",
+    "expected_answer": "Note 19",
+    "expected_pages": [63],
+    "gold_substring": "Note 19",
+    "seen_before": false
+  },
+  {
+    "id": "N3",
+    "category": "narrative",
+    "question": "How is the recoverable amount of a cash-generating asset measured?",
+    "expected_answer": "the higher of fair value less cost of disposal and value in use",
+    "expected_pages": [63],
+    "gold_substring": "value in use",
+    "seen_before": false
+  },
+  {
+    "id": "N4",
+    "category": "narrative",
+    "question": "When did PLN and HBAP agree to adjust the Power Purchase Agreement?",
+    "expected_answer": "July 2022",
+    "expected_pages": [73],
+    "gold_substring": "July 2022",
+    "seen_before": false
+  },
+  {
+    "id": "N5",
+    "category": "narrative",
+    "question": "When did HBAP sign a side agreement with PLN to delay the commercial operation date?",
+    "expected_answer": "August 2022",
+    "expected_pages": [73],
+    "gold_substring": "August 2022",
+    "seen_before": false
+  },
+  {
+    "id": "N6",
+    "category": "narrative",
+    "question": "What did HBAP estimate as a result of the delay of the commercial operation date?",
+    "expected_answer": "additional construction costs and other operational costs (\"additional costs\")",
+    "expected_pages": [73],
+    "gold_substring": "additional costs",
+    "seen_before": false
+  },
+  {
+    "id": "N7",
+    "category": "narrative",
+    "question": "What factors determine the present value of the pension obligation?",
+    "expected_answer": "discount rate, future salary increase, remuneration changes, attrition, life expectancy, remaining service, medical cost trend, average medical cost",
+    "expected_pages": [63],
+    "gold_substring": "life expectancy",
+    "seen_before": true
+  },
+  {
+    "id": "N8",
+    "category": "narrative",
+    "question": "When was the guarantee on the HBAP share pledge approved by the Minister of SOE?",
+    "expected_answer": "May 17, 2018",
+    "expected_pages": [73],
+    "gold_substring": "May 17",
+    "seen_before": true
+  },
+  {
+    "id": "T1",
+    "category": "table",
+    "question": "What was HBAP's revenue for the period ended March 31, 2026?",
+    "expected_answer": "567.618",
+    "expected_pages": [73],
+    "gold_substring": "Pendapatan 567.618 554.473",
+    "seen_before": true
+  },
+  {
+    "id": "T2",
+    "category": "table",
+    "question": "What was HBAP's profit for the period ended March 31, 2026?",
+    "expected_answer": "346.241",
+    "expected_pages": [73],
+    "gold_substring": "346.241 183.979",
+    "seen_before": false
+  },
+  {
+    "id": "T3",
+    "category": "table",
+    "question": "What was HBAP's total comprehensive income for the period ended March 31, 2026?",
+    "expected_answer": "714.992",
+    "expected_pages": [73],
+    "gold_substring": "714.992 183.979",
+    "seen_before": false
+  },
+  {
+    "id": "T4",
+    "category": "table",
+    "question": "What was HBAP's revenue for the period ended March 31, 2025?",
+    "expected_answer": "554.473",
+    "expected_pages": [73],
+    "gold_substring": "Pendapatan 567.618 554.473",
+    "seen_before": false
+  },
+  {
+    "id": "T5",
+    "category": "table",
+    "question": "What was BPI's revenue for the period ended March 31, 2026?",
+    "expected_answer": "203.513",
+    "expected_pages": [72],
+    "gold_substring": "Pendapatan 203.513 240.534",
+    "seen_before": false
+  },
+  {
+    "id": "A1",
+    "category": "absent",
+    "question": "Why did PLN request a delay to HBAP's commercial operation date?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "gold_substring": null,
+    "seen_before": true
+  },
+  {
+    "id": "A2",
+    "category": "absent",
+    "question": "What new commercial operation date was agreed for HBAP's power plant?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "gold_substring": null,
+    "seen_before": false
+  },
+  {
+    "id": "A3",
+    "category": "absent",
+    "question": "What was the total amount of HBAP's additional costs from the delay?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "gold_substring": null,
+    "seen_before": false
+  },
+  {
+    "id": "A4",
+    "category": "absent",
+    "question": "What dividend per share did the Company declare for fiscal year 2025?",
+    "expected_answer": null,
+    "expected_pages": [],
+    "gold_substring": null,
+    "seen_before": false
+  }
+]
