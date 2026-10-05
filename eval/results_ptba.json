@@ -1,0 +1,1071 @@
+{
+  "run_at": "2026-10-05T04:45:35.964974+00:00",
+  "model": "claude-haiku-4-5-20251001",
+  "document_id": 4,
+  "summary": {
+    "narrative": {
+      "n": 9,
+      "correct": 6,
+      "unsure": 0,
+      "refused": 3,
+      "wrong_and_confident": 0,
+      "citation_correct": 6,
+      "retrieval_hit": 7
+    },
+    "table": {
+      "n": 5,
+      "correct": 0,
+      "unsure": 0,
+      "refused": 2,
+      "wrong_and_confident": 3,
+      "citation_correct": 0,
+      "retrieval_hit": 1
+    },
+    "absent": {
+      "n": 3,
+      "correct": 3,
+      "unsure": 0,
+      "refused": 3,
+      "wrong_and_confident": 0,
+      "citation_correct": null,
+      "retrieval_hit": null
+    }
+  },
+  "input_tokens": 25957,
+  "output_tokens": 631,
+  "cost_usd": 0.029112,
+  "results": [
+    {
+      "id": "N1",
+      "category": "narrative",
+      "question": "How does the Group determine the discount rate used for the pension obligation?",
+      "expected_answer": "government bond interest rates, since there is no deep market for high-quality corporate bonds",
+      "expected_pages": [
+        63
+      ],
+      "gold_substring": "obligasi pemerintah",
+      "seen_before": false,
+      "result": "CORRECT",
+      "detail": "2/2 expected facts found",
+      "stated": true,
+      "answer": "The Group determines the appropriate discount rate at the end of each period by considering the interest rates of government bonds that are denominated in the currency in which the benefits will be paid and that have terms to maturity approximating the terms of the related pension obligation [ptba-quarterly-report.pdf, page 63]. When there is no deep market for high quality corporate bonds, the market rates of government bonds are used [ptba-quarterly-report.pdf, page 49].",
+      "raw_output": "The Group determines the appropriate discount rate at the end of each period by considering the interest rates of government bonds that are denominated in the currency in which the benefits will be paid and that have terms to maturity approximating the terms of the related pension obligation [ptba-quarterly-report.pdf, page 63]. When there is no deep market for high quality corporate bonds, the market rates of government bonds are used [ptba-quarterly-report.pdf, page 49].",
+      "cited_pages": [
+        49,
+        63
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 713,
+          "page": 63,
+          "score": 0.7119
+        },
+        {
+          "rank": 2,
+          "chunk_id": 714,
+          "page": 63,
+          "score": 0.7039
+        },
+        {
+          "rank": 3,
+          "chunk_id": 586,
+          "page": 43,
+          "score": 0.5394
+        },
+        {
+          "rank": 4,
+          "chunk_id": 709,
+          "page": 63,
+          "score": 0.5131
+        },
+        {
+          "rank": 5,
+          "chunk_id": 625,
+          "page": 49,
+          "score": 0.5095
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 4,
+      "gold_hit_pages": [
+        63
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1163,
+      "output_tokens": 102,
+      "cost_usd": 0.001673,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N2",
+      "category": "narrative",
+      "question": "In which note are the carrying amounts of employee benefits liabilities disclosed?",
+      "expected_answer": "Note 19",
+      "expected_pages": [
+        63
+      ],
+      "gold_substring": "Note 19",
+      "seen_before": false,
+      "result": "REFUSED",
+      "detail": "answerable question returned not stated",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 877,
+          "page": 98,
+          "score": 0.5908
+        },
+        {
+          "rank": 2,
+          "chunk_id": 910,
+          "page": 105,
+          "score": 0.5895
+        },
+        {
+          "rank": 3,
+          "chunk_id": 905,
+          "page": 104,
+          "score": 0.5822
+        },
+        {
+          "rank": 4,
+          "chunk_id": 883,
+          "page": 99,
+          "score": 0.5705
+        },
+        {
+          "rank": 5,
+          "chunk_id": 872,
+          "page": 97,
+          "score": 0.568
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1504,
+      "output_tokens": 5,
+      "cost_usd": 0.001529,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N3",
+      "category": "narrative",
+      "question": "How is the recoverable amount of a cash-generating asset measured?",
+      "expected_answer": "the higher of fair value less cost of disposal and value in use",
+      "expected_pages": [
+        63
+      ],
+      "gold_substring": "value in use",
+      "seen_before": false,
+      "result": "REFUSED",
+      "detail": "answerable question returned not stated",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 535,
+          "page": 35,
+          "score": 0.6013
+        },
+        {
+          "rank": 2,
+          "chunk_id": 548,
+          "page": 37,
+          "score": 0.518
+        },
+        {
+          "rank": 3,
+          "chunk_id": 563,
+          "page": 39,
+          "score": 0.5169
+        },
+        {
+          "rank": 4,
+          "chunk_id": 542,
+          "page": 36,
+          "score": 0.5146
+        },
+        {
+          "rank": 5,
+          "chunk_id": 529,
+          "page": 34,
+          "score": 0.5116
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1152,
+      "output_tokens": 5,
+      "cost_usd": 0.001177,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N4",
+      "category": "narrative",
+      "question": "When did PLN and HBAP agree to adjust the Power Purchase Agreement?",
+      "expected_answer": "July 2022",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "July 2022",
+      "seen_before": false,
+      "result": "CORRECT",
+      "detail": "expected value present, nothing conflicting",
+      "stated": true,
+      "answer": "According to the context, PLN and HBAP agreed to adjust the Power Purchase Agreement in July 2022. [ptba-quarterly-report.pdf, page 73]",
+      "raw_output": "According to the context, PLN and HBAP agreed to adjust the Power Purchase Agreement in July 2022. [ptba-quarterly-report.pdf, page 73]",
+      "cited_pages": [
+        73
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 759,
+          "page": 73,
+          "score": 0.7146
+        },
+        {
+          "rank": 2,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.6329
+        },
+        {
+          "rank": 3,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5866
+        },
+        {
+          "rank": 4,
+          "chunk_id": 747,
+          "page": 71,
+          "score": 0.5678
+        },
+        {
+          "rank": 5,
+          "chunk_id": 978,
+          "page": 119,
+          "score": 0.5402
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 1,
+      "gold_hit_pages": [
+        73
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1756,
+      "output_tokens": 42,
+      "cost_usd": 0.001966,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N5",
+      "category": "narrative",
+      "question": "When did HBAP sign a side agreement with PLN to delay the commercial operation date?",
+      "expected_answer": "August 2022",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "August 2022",
+      "seen_before": false,
+      "result": "CORRECT",
+      "detail": "expected value present, nothing conflicting",
+      "stated": true,
+      "answer": "According to the context, HBAP signed a side agreement with PLN to delay the commercial operation date in August 2022. [ptba-quarterly-report.pdf, page 73]",
+      "raw_output": "According to the context, HBAP signed a side agreement with PLN to delay the commercial operation date in August 2022. [ptba-quarterly-report.pdf, page 73]",
+      "cited_pages": [
+        73
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 759,
+          "page": 73,
+          "score": 0.746
+        },
+        {
+          "rank": 2,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.6929
+        },
+        {
+          "rank": 3,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.6441
+        },
+        {
+          "rank": 4,
+          "chunk_id": 747,
+          "page": 71,
+          "score": 0.6025
+        },
+        {
+          "rank": 5,
+          "chunk_id": 1037,
+          "page": 129,
+          "score": 0.5355
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 1,
+      "gold_hit_pages": [
+        73
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1629,
+      "output_tokens": 45,
+      "cost_usd": 0.001854,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N6",
+      "category": "narrative",
+      "question": "What did HBAP estimate as a result of the delay of the commercial operation date?",
+      "expected_answer": "additional construction costs and other operational costs",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "additional costs",
+      "seen_before": false,
+      "result": "CORRECT",
+      "detail": "2/2 expected facts found",
+      "stated": true,
+      "answer": "As a result of the delay of the commercial operation date of HBAP's power plant, HBAP estimated additional construction costs and other operational costs (\"additional costs\") [ptba-quarterly-report.pdf, page 73].",
+      "raw_output": "As a result of the delay of the commercial operation date of HBAP's power plant, HBAP estimated additional construction costs and other operational costs (\"additional costs\") [ptba-quarterly-report.pdf, page 73].",
+      "cited_pages": [
+        73
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.6049
+        },
+        {
+          "rank": 2,
+          "chunk_id": 759,
+          "page": 73,
+          "score": 0.5214
+        },
+        {
+          "rank": 3,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.4733
+        },
+        {
+          "rank": 4,
+          "chunk_id": 748,
+          "page": 71,
+          "score": 0.464
+        },
+        {
+          "rank": 5,
+          "chunk_id": 1029,
+          "page": 128,
+          "score": 0.4471
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 1,
+      "gold_hit_pages": [
+        73
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1699,
+      "output_tokens": 53,
+      "cost_usd": 0.001964,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N7",
+      "category": "narrative",
+      "question": "What factors determine the present value of the pension obligation?",
+      "expected_answer": "discount rate, salary increase, remuneration changes, attrition, life expectancy, remaining service, medical cost trend, average medical cost",
+      "expected_pages": [
+        63
+      ],
+      "gold_substring": "life expectancy",
+      "seen_before": true,
+      "result": "CORRECT",
+      "detail": "8/8 expected facts found",
+      "stated": true,
+      "answer": "According to the context, the present value of the pension obligation depends on a number of factors that are determined on an actuarial basis using a number of assumptions. These factors include: [ptba-quarterly-report.pdf, page 63]\n\n1. The discount rate\n2. Future salary increase\n3. Future remuneration changes\n4. Employee attrition rates\n5. Life expectancy\n6. Expected remaining periods of service of employees\n7. Medical cost trend\n8. Average medical cost\n\nThe context also notes that \"any changes in these assumptions will have an impact on the carrying amount of the pension obligation.\" [ptba-quarterly-report.pdf, page 63]",
+      "raw_output": "According to the context, the present value of the pension obligation depends on a number of factors that are determined on an actuarial basis using a number of assumptions. These factors include: [ptba-quarterly-report.pdf, page 63]\n\n1. The discount rate\n2. Future salary increase\n3. Future remuneration changes\n4. Employee attrition rates\n5. Life expectancy\n6. Expected remaining periods of service of employees\n7. Medical cost trend\n8. Average medical cost\n\nThe context also notes that \"any changes in these assumptions will have an impact on the carrying amount of the pension obligation.\" [ptba-quarterly-report.pdf, page 63]",
+      "cited_pages": [
+        63
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 713,
+          "page": 63,
+          "score": 0.6944
+        },
+        {
+          "rank": 2,
+          "chunk_id": 714,
+          "page": 63,
+          "score": 0.5866
+        },
+        {
+          "rank": 3,
+          "chunk_id": 625,
+          "page": 49,
+          "score": 0.5426
+        },
+        {
+          "rank": 4,
+          "chunk_id": 624,
+          "page": 49,
+          "score": 0.5181
+        },
+        {
+          "rank": 5,
+          "chunk_id": 919,
+          "page": 106,
+          "score": 0.5043
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 1,
+      "gold_hit_pages": [
+        63
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1024,
+      "output_tokens": 149,
+      "cost_usd": 0.001769,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N8",
+      "category": "narrative",
+      "question": "When was the guarantee on the HBAP share pledge approved by the Minister of SOE?",
+      "expected_answer": "May 17, 2018",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "May 17",
+      "seen_before": true,
+      "result": "CORRECT",
+      "detail": "expected value present, nothing conflicting",
+      "stated": true,
+      "answer": "The guarantee on the HBAP share pledge was approved by the Minister of State-Owned Enterprise (SOE) on May 17, 2018. [ptba-quarterly-report.pdf, page 73]",
+      "raw_output": "The guarantee on the HBAP share pledge was approved by the Minister of State-Owned Enterprise (SOE) on May 17, 2018. [ptba-quarterly-report.pdf, page 73]",
+      "cited_pages": [
+        73
+      ],
+      "citation_hit": true,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.527
+        },
+        {
+          "rank": 2,
+          "chunk_id": 1007,
+          "page": 124,
+          "score": 0.5026
+        },
+        {
+          "rank": 3,
+          "chunk_id": 1002,
+          "page": 123,
+          "score": 0.4741
+        },
+        {
+          "rank": 4,
+          "chunk_id": 388,
+          "page": 11,
+          "score": 0.4312
+        },
+        {
+          "rank": 5,
+          "chunk_id": 1008,
+          "page": 124,
+          "score": 0.4058
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 1,
+      "gold_hit_pages": [
+        73
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1278,
+      "output_tokens": 51,
+      "cost_usd": 0.001533,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "N9",
+      "category": "narrative",
+      "question": "Since when has HBAP's power plant been in the COD phase?",
+      "expected_answer": "October 7, 2023",
+      "expected_pages": [
+        74
+      ],
+      "gold_substring": "October 7, 2023",
+      "seen_before": false,
+      "result": "REFUSED",
+      "detail": "answerable question returned not stated",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 759,
+          "page": 73,
+          "score": 0.4918
+        },
+        {
+          "rank": 2,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.4882
+        },
+        {
+          "rank": 3,
+          "chunk_id": 748,
+          "page": 71,
+          "score": 0.4577
+        },
+        {
+          "rank": 4,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.4207
+        },
+        {
+          "rank": 5,
+          "chunk_id": 747,
+          "page": 71,
+          "score": 0.414
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 3,
+      "gold_hit_pages": [
+        71
+      ],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1690,
+      "output_tokens": 5,
+      "cost_usd": 0.001715,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "T1",
+      "category": "table",
+      "question": "What was HBAP's revenue for the period ended March 31, 2026?",
+      "expected_answer": "567.618",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "Pendapatan 567.618 554.473",
+      "seen_before": true,
+      "result": "WRONG",
+      "detail": "expected [567618] not present; answer contains [203513]",
+      "stated": true,
+      "answer": "According to the context, HBAP's revenue for the period ended March 31, 2026 was 203.513 [ptba-quarterly-report.pdf, page 72].",
+      "raw_output": "According to the context, HBAP's revenue for the period ended March 31, 2026 was 203.513 [ptba-quarterly-report.pdf, page 72].",
+      "cited_pages": [
+        72
+      ],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 753,
+          "page": 72,
+          "score": 0.6034
+        },
+        {
+          "rank": 2,
+          "chunk_id": 752,
+          "page": 72,
+          "score": 0.603
+        },
+        {
+          "rank": 3,
+          "chunk_id": 744,
+          "page": 70,
+          "score": 0.5633
+        },
+        {
+          "rank": 4,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5523
+        },
+        {
+          "rank": 5,
+          "chunk_id": 748,
+          "page": 71,
+          "score": 0.5428
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1600,
+      "output_tokens": 46,
+      "cost_usd": 0.00183,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "T2",
+      "category": "table",
+      "question": "What was HBAP's profit for the period ended March 31, 2026?",
+      "expected_answer": "346.241",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "346.241 183.979",
+      "seen_before": false,
+      "result": "WRONG",
+      "detail": "expected [346241] not present; answer contains [20463]",
+      "stated": true,
+      "answer": "According to the context, HBAP's profit for the period ended March 31, 2026 was 20.463 (in millions) [ptba-quarterly-report.pdf, page 72].",
+      "raw_output": "According to the context, HBAP's profit for the period ended March 31, 2026 was 20.463 (in millions) [ptba-quarterly-report.pdf, page 72].",
+      "cited_pages": [
+        72
+      ],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 752,
+          "page": 72,
+          "score": 0.6044
+        },
+        {
+          "rank": 2,
+          "chunk_id": 753,
+          "page": 72,
+          "score": 0.6
+        },
+        {
+          "rank": 3,
+          "chunk_id": 744,
+          "page": 70,
+          "score": 0.5935
+        },
+        {
+          "rank": 4,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5534
+        },
+        {
+          "rank": 5,
+          "chunk_id": 748,
+          "page": 71,
+          "score": 0.5451
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1600,
+      "output_tokens": 50,
+      "cost_usd": 0.00185,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "T3",
+      "category": "table",
+      "question": "What was HBAP's total comprehensive income for the period ended March 31, 2026?",
+      "expected_answer": "714.992",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "714.992 183.979",
+      "seen_before": false,
+      "result": "WRONG",
+      "detail": "expected [714992] not present; answer contains [20463]",
+      "stated": true,
+      "answer": "According to the context, HBAP's total comprehensive income for the period ended March 31, 2026 was 20.463 million Rupiah. [ptba-quarterly-report.pdf, page 72]",
+      "raw_output": "According to the context, HBAP's total comprehensive income for the period ended March 31, 2026 was 20.463 million Rupiah. [ptba-quarterly-report.pdf, page 72]",
+      "cited_pages": [
+        72
+      ],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 752,
+          "page": 72,
+          "score": 0.6143
+        },
+        {
+          "rank": 2,
+          "chunk_id": 753,
+          "page": 72,
+          "score": 0.6006
+        },
+        {
+          "rank": 3,
+          "chunk_id": 744,
+          "page": 70,
+          "score": 0.5847
+        },
+        {
+          "rank": 4,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5546
+        },
+        {
+          "rank": 5,
+          "chunk_id": 838,
+          "page": 90,
+          "score": 0.5541
+        }
+      ],
+      "retrieval_hit": true,
+      "gold_rank": 4,
+      "gold_hit_pages": [
+        73
+      ],
+      "warning": null,
+      "note": null,
+      "input_tokens": 1686,
+      "output_tokens": 53,
+      "cost_usd": 0.001951,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "T4",
+      "category": "table",
+      "question": "What was HBAP's revenue for the period ended March 31, 2025?",
+      "expected_answer": "554.473",
+      "expected_pages": [
+        73
+      ],
+      "gold_substring": "Pendapatan 567.618 554.473",
+      "seen_before": false,
+      "result": "REFUSED",
+      "detail": "answerable question returned not stated",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 752,
+          "page": 72,
+          "score": 0.6053
+        },
+        {
+          "rank": 2,
+          "chunk_id": 753,
+          "page": 72,
+          "score": 0.6003
+        },
+        {
+          "rank": 3,
+          "chunk_id": 744,
+          "page": 70,
+          "score": 0.5676
+        },
+        {
+          "rank": 4,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5521
+        },
+        {
+          "rank": 5,
+          "chunk_id": 748,
+          "page": 71,
+          "score": 0.5365
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1600,
+      "output_tokens": 5,
+      "cost_usd": 0.001625,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "T5",
+      "category": "table",
+      "question": "What was BPI's revenue for the period ended March 31, 2026?",
+      "expected_answer": "203.513",
+      "expected_pages": [
+        72
+      ],
+      "gold_substring": "Pendapatan 203.513 240.534",
+      "seen_before": false,
+      "result": "REFUSED",
+      "detail": "answerable question returned not stated",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": false,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 835,
+          "page": 89,
+          "score": 0.5669
+        },
+        {
+          "rank": 2,
+          "chunk_id": 840,
+          "page": 90,
+          "score": 0.5496
+        },
+        {
+          "rank": 3,
+          "chunk_id": 744,
+          "page": 70,
+          "score": 0.5399
+        },
+        {
+          "rank": 4,
+          "chunk_id": 1153,
+          "page": 152,
+          "score": 0.5383
+        },
+        {
+          "rank": 5,
+          "chunk_id": 1154,
+          "page": 152,
+          "score": 0.5374
+        }
+      ],
+      "retrieval_hit": false,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1645,
+      "output_tokens": 5,
+      "cost_usd": 0.00167,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "A1",
+      "category": "absent",
+      "question": "Why did PLN request a delay to HBAP's commercial operation date?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "gold_substring": null,
+      "seen_before": true,
+      "result": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 759,
+          "page": 73,
+          "score": 0.6622
+        },
+        {
+          "rank": 2,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.6109
+        },
+        {
+          "rank": 3,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.5431
+        },
+        {
+          "rank": 4,
+          "chunk_id": 747,
+          "page": 71,
+          "score": 0.5084
+        },
+        {
+          "rank": 5,
+          "chunk_id": 1032,
+          "page": 128,
+          "score": 0.4621
+        }
+      ],
+      "retrieval_hit": null,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1614,
+      "output_tokens": 5,
+      "cost_usd": 0.001639,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "A3",
+      "category": "absent",
+      "question": "What was the total amount of HBAP's additional costs from the delay?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "gold_substring": null,
+      "seen_before": false,
+      "result": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 760,
+          "page": 73,
+          "score": 0.5738
+        },
+        {
+          "rank": 2,
+          "chunk_id": 752,
+          "page": 72,
+          "score": 0.471
+        },
+        {
+          "rank": 3,
+          "chunk_id": 758,
+          "page": 73,
+          "score": 0.4599
+        },
+        {
+          "rank": 4,
+          "chunk_id": 841,
+          "page": 90,
+          "score": 0.4517
+        },
+        {
+          "rank": 5,
+          "chunk_id": 753,
+          "page": 72,
+          "score": 0.4511
+        }
+      ],
+      "retrieval_hit": null,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1658,
+      "output_tokens": 5,
+      "cost_usd": 0.001683,
+      "stop_reason": "end_turn"
+    },
+    {
+      "id": "A4",
+      "category": "absent",
+      "question": "What dividend per share did the Company declare for fiscal year 2025?",
+      "expected_answer": null,
+      "expected_pages": [],
+      "gold_substring": null,
+      "seen_before": false,
+      "result": "PASS",
+      "detail": "refused",
+      "stated": false,
+      "answer": "not stated",
+      "raw_output": "not stated",
+      "cited_pages": [],
+      "citation_hit": null,
+      "retrieved": [
+        {
+          "rank": 1,
+          "chunk_id": 957,
+          "page": 114,
+          "score": 0.5475
+        },
+        {
+          "rank": 2,
+          "chunk_id": 947,
+          "page": 112,
+          "score": 0.5032
+        },
+        {
+          "rank": 3,
+          "chunk_id": 954,
+          "page": 113,
+          "score": 0.5024
+        },
+        {
+          "rank": 4,
+          "chunk_id": 1125,
+          "page": 146,
+          "score": 0.4879
+        },
+        {
+          "rank": 5,
+          "chunk_id": 958,
+          "page": 114,
+          "score": 0.4839
+        }
+      ],
+      "retrieval_hit": null,
+      "gold_rank": null,
+      "gold_hit_pages": [],
+      "warning": "Page 2 of ptba-quarterly-report.pdf produced no extractable text. The answer may be present on a page the extractor could not read.",
+      "note": null,
+      "input_tokens": 1659,
+      "output_tokens": 5,
+      "cost_usd": 0.001684,
+      "stop_reason": "end_turn"
+    }
+  ]
+}
