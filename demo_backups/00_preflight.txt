@@ -1,0 +1,21 @@
+# saved 2026-10-06 11:42:21; exit code 0; took 17 s
+$ bash preflight.sh
+
+Preflight 2026-10-06 11:42:04  (project: /d/Avantis/The Great Reset/pdf-extractor)
+
+[PASS] Docker engine is reachable
+[PASS] Container pdf_extractor_db is healthy (host port mapping: 0.0.0.0:5433 [::]:5433 )
+[PASS] Database answers a query inside the container (user postgres, database pdf_extractor)
+[PASS] Python dependencies import (Python 3.10.11)
+[PASS] DATABASE_URL, OPENAI_API_KEY and ANTHROPIC_API_KEY are all set (values not shown)
+[PASS] The application connects through DATABASE_URL
+[PASS] Four documents are ingested, each with chunks
+         document 1: 253 chunks  (Ethereum Yellow Paper_ a formal specification of Ethereum, a programmable blockchain.pdf)
+         document 2: 19 chunks  (AC_Research_Bitget_Token_BGB.pdf)
+         document 3: 77 chunks  (POL Whitepaper v0.2.pdf)
+         document 4: 805 chunks  (ptba-quarterly-report.pdf)
+[PASS] Chunk counts match the recorded values (1:253 2:19 3:77 4:805)
+[PASS] No chunk is missing an embedding (vector dimension 1536)
+[PASS] Answer works end to end: stated with a page-9 citation (11 s)
+
+10 passed, 0 failed

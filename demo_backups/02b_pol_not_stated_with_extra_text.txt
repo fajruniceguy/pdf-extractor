@@ -1,0 +1,12 @@
+# saved 2026-10-06 11:38:48; exit code 0; took 5.9 s
+$ python cli.py answer "What block time do Polygon chains use?" --doc 3
+
+Question: What block time do Polygon chains use?
+Answer:   not stated
+Stated:   False
+Citations: none
+Retrieved (page, score): p14 (0.655), p14 (0.569), p15 (0.546), p19 (0.535), p13 (0.531)
+Raw model output: 'not stated\n\nThe context states that "It is possible to configure the frequency and size, i.e. gas limit of blocks" [POL Whitepaper v0.2.pdf, page 14], meaning block time is configurable by individual chains, but no specific block time value is provided in the excerpts.'
+Model: claude-haiku-4-5-20251001  stop_reason: end_turn
+Tokens: 943 in / 71 out  est. cost: $0.001298
+WARNING: model added text after 'not stated' (not part of the answer): 'The context states that "It is possible to configure the frequency and size, i.e. gas limit of blocks" [POL Whitepaper v0.2.pdf, page 14], meaning block time is configurable by individual chains, but no specific block time value is provided in the excerpts.'

@@ -1,0 +1,11 @@
+# saved 2026-10-06 11:39:16; exit code 0; took 6.2 s
+$ python cli.py answer "What was HBAP's revenue for the period ended March 31, 2026?" --doc 4
+
+Question: What was HBAP's revenue for the period ended March 31, 2026?
+Answer:   According to the context, HBAP's revenue for the period ended March 31, 2026 was 203.513 [ptba-quarterly-report.pdf, page 72].
+Stated:   True
+Citations: ptba-quarterly-report.pdf, page 72
+Retrieved (page, score): p72 (0.603), p72 (0.603), p70 (0.563), p73 (0.552), p71 (0.543)
+Raw model output: "According to the context, HBAP's revenue for the period ended March 31, 2026 was 203.513 [ptba-quarterly-report.pdf, page 72]."
+Model: claude-haiku-4-5-20251001  stop_reason: end_turn
+Tokens: 1600 in / 46 out  est. cost: $0.001830

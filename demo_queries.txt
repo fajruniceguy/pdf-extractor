@@ -1,0 +1,11 @@
+# Run from the project folder. Quotes are plain double quotes, so these work in PowerShell and Git Bash.
+# Document ids: 3 = POL whitepaper, 4 = PTBA interim financial statements.
+
+# 1. POL, answered with a page citation (correct, citing page 10, in all saved eval runs)
+python cli.py answer "For how many years can the POL emission rate not be changed?" --doc 3
+
+# 2. POL, correctly refused: the answer is not in the document (returned "not stated" in all saved eval runs)
+python cli.py answer "What block time do Polygon chains use?" --doc 3
+
+# 3. PTBA, a known failure: asked for HBAP's revenue, it answers with another entity's figure
+python cli.py answer "What was HBAP's revenue for the period ended March 31, 2026?" --doc 4
